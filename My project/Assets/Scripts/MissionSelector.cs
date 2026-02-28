@@ -1,26 +1,77 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MissionSelector : MonoBehaviour
 {
+    private TimeManager timeManager;
+
+    [Header("Camera Movement")]
     private Camera cam;
     [SerializeField] private Vector3 tableAngle;
     [SerializeField] private Vector3 squadAngle;
     [SerializeField] private float camRotationSpeed;
+
     [Header("Buttons")]
     [SerializeField] private GameObject upButton;
     [SerializeField] private GameObject downButton;
 
-    private bool SquadSelect;
+    [Header("Mission Lists")]
+    [SerializeField] private List<Mission> missionPool;
+    public List<Mission> AvailableMissions;
+    //  for the selected mission
+    private int missionIndex;
 
-    //  probably will replace this with a mission component or scriptable object
-    private GameObject mission;
+    [Space(5)]
+    public List<BeeSquad> BeeSquadUnits;
+    //  not sure if this needs to be a list, but we would have access to names of the dead
+    public List<BeeSquad> BeeSquadGraveyard;
+    //  for the selected member
+    private int beeSquadIndex;
+
+    //  view mode: false = looking at map, true = selecting units
+    private bool SquadSelect;
 
     private void Start()
     {
         cam = Camera.main;
+        //  assuming we're stuffing all the scripts on one empty object
+        timeManager = GetComponent<TimeManager>();
     }
 
+    //  cycle through bee squad members
+    public void BeePrevIndex()
+    {
+        beeSquadIndex--;
+
+        if (!BeeSquadUnits[beeSquadIndex].Available)
+        {
+            beeSquadIndex--;
+        }
+
+        if (beeSquadIndex < 0)
+        {
+            beeSquadIndex = BeeSquadUnits.Count - 1;
+        }
+    }
+
+    public void BeeNextIndex()
+    {
+        beeSquadIndex++;
+
+        if (!BeeSquadUnits[beeSquadIndex].Available)
+        {
+            beeSquadIndex++;
+        }
+
+        if(beeSquadIndex >= BeeSquadUnits.Count)
+        {
+            beeSquadIndex = 0;
+        }
+    }
+
+    //  look at squad menu
     public void SquadAngle()
     {
         //Debug.Log("CAM Up to " + squadAngle);
@@ -28,6 +79,7 @@ public class MissionSelector : MonoBehaviour
         StartCoroutine(CameraRotate(squadAngle, upButton, downButton));
     }
 
+    //  look at mission menu
     public void TableAngle()
     {
         //Debug.Log("CAM Table to" + tableAngle + " | " + Quaternion.Euler(tableAngle));
