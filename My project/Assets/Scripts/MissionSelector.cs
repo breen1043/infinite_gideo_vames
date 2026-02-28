@@ -7,8 +7,11 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private Vector3 tableAngle;
     [SerializeField] private Vector3 squadAngle;
     [SerializeField] private float camRotationSpeed;
+    [Header("Buttons")]
+    [SerializeField] private GameObject upButton;
+    [SerializeField] private GameObject downButton;
 
-    [SerializeField] private bool SquadSelect;
+    private bool SquadSelect;
 
     //  probably will replace this with a mission component or scriptable object
     private GameObject mission;
@@ -22,19 +25,21 @@ public class MissionSelector : MonoBehaviour
     {
         //Debug.Log("CAM Up to " + squadAngle);
         SquadSelect = true;
-        StartCoroutine(CameraRotate(squadAngle));
+        StartCoroutine(CameraRotate(squadAngle, upButton, downButton));
     }
 
     public void TableAngle()
     {
         //Debug.Log("CAM Table to" + tableAngle + " | " + Quaternion.Euler(tableAngle));
         SquadSelect = false;
-        StartCoroutine(CameraRotate(tableAngle));
+        StartCoroutine(CameraRotate(tableAngle, downButton, upButton));
     }
 
-    private IEnumerator CameraRotate(Vector3 angle)
+    private IEnumerator CameraRotate(Vector3 angle, GameObject buttonClicked, GameObject buttonAppearing)
     {
+        buttonClicked.SetActive(false);
         Quaternion qangle = Quaternion.Euler(angle);
+
         while (Quaternion.Angle(cam.transform.rotation, qangle) > 0.001 )
         {
             //Debug.Log(angle +" "+cam.transform.rotation);
@@ -43,6 +48,8 @@ public class MissionSelector : MonoBehaviour
             yield return null;
         }
         //Debug.Log("loop end");
+
+        buttonAppearing.SetActive(true);
         StopAllCoroutines();
     }
 }

@@ -480,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &848902669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1264,7 +1264,8 @@ MonoBehaviour:
   tableAngle: {x: 45, y: 0, z: 0}
   squadAngle: {x: 0, y: 0, z: 0}
   camRotationSpeed: 50
-  SquadSelect: 1
+  upButton: {fileID: 1234788790}
+  downButton: {fileID: 848902668}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
