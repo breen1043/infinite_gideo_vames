@@ -27,4 +27,7 @@ public class Mission : ScriptableObject
     public string Title;
     [TextArea(0, 30)]
     public string Description;
+
+    [Space(5)]
+    public MissionNode.Location Location;
 }

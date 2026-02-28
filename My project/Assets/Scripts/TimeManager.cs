@@ -5,8 +5,11 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private int currentHour;
     [SerializeField] private int finalHour;
 
-    [SerializeField] private int currentDay;
-    [SerializeField] private int finalDay;
+    //  counts down, when reaches zero, initiate the bear
+    [SerializeField] private int daysLeft;
+    //  when the bear shows up
+    //  slowly approaching bear
+    [SerializeField] private int totalDays;
 
     public void PassTime()
     {
@@ -15,7 +18,7 @@ public class TimeManager : MonoBehaviour
         if (currentHour == finalHour)
         {
             currentHour = 0;
-            currentDay++;
+            daysLeft--;
         }
     }
 }
