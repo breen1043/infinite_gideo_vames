@@ -4,6 +4,15 @@ public class MissionNode : MonoBehaviour
 {
     public Mission mission;
 
+    public enum Location
+    {
+        Hive,
+        Forest,
+        Pond,
+        Meadow,
+        Picnic
+    }
+
     void Start()
     {
         
@@ -15,4 +24,14 @@ public class MissionNode : MonoBehaviour
      *  it will also be used to display mission data to the player
      *  when they click/hover over a mission.
      */
+
+    public void HoverInfo()
+    {
+
+    }
+
+    public void ClickSelect()
+    {
+
+    }
 }
