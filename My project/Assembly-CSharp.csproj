@@ -50,7 +50,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BeeSquads.cs" />
     <Compile Include="Assets\Scripts\MissionSelector.cs" />
+    <Compile Include="Assets\Scripts\ui_manager.cs" />
+    <Compile Include="Assets\clicker.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\button_clicker.cs" />
     <Compile Include="Assets\Scripts\PollenHandler.cs" />
     <Compile Include="Assets\Scripts\TimeManager.cs" />
   </ItemGroup>

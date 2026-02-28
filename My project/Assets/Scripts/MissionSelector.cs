@@ -10,6 +10,7 @@ public class MissionSelector : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private GameObject upButton;
     [SerializeField] private GameObject downButton;
+    [SerializeField] private GameObject killallthebeespanel;
 
     private bool SquadSelect;
 
@@ -33,6 +34,16 @@ public class MissionSelector : MonoBehaviour
         //Debug.Log("CAM Table to" + tableAngle + " | " + Quaternion.Euler(tableAngle));
         SquadSelect = false;
         StartCoroutine(CameraRotate(tableAngle, downButton, upButton));
+    }
+
+    public void OpenQuest(bool maybe) {
+        //Debug.Log("open the quests");
+        killallthebeespanel.SetActive(maybe);
+    }
+
+    public void SendYourBeesToDie() {
+        Debug.Log("og will starve");
+        killallthebeespanel.SetActive(false);
     }
 
     private IEnumerator CameraRotate(Vector3 angle, GameObject buttonClicked, GameObject buttonAppearing)
