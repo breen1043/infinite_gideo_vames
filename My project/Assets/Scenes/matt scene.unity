@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 848902671}
   - component: {fileID: 848902670}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Look Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,7 +547,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2129004914}
         m_TargetAssemblyTypeName: MissionSelector, Assembly-CSharp
-        m_MethodName: SwitchView
+        m_MethodName: TableAngle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 1234788793}
   - component: {fileID: 1234788792}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Look Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -680,7 +680,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2129004914}
         m_TargetAssemblyTypeName: MissionSelector, Assembly-CSharp
-        m_MethodName: SwitchView
+        m_MethodName: SquadAngle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1261,9 +1261,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5289de0783cb8dc498c78561865a2c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissionSelector
-  tableAngle: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  squadAngle: {x: 0, y: 0, z: 0, w: 0}
+  tableAngle: {x: 0.38268346, y: 0, z: 0}
+  squadAngle: {x: 0, y: 0, z: 0}
   camRotationSpeed: 50
+  SquadSelect: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
