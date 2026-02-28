@@ -6,6 +6,7 @@ using UnityEngine;
 public class MissionSelector : MonoBehaviour
 {
     private TimeManager timeManager;
+    private MissionSetter missionSetter;
 
     [Header("Camera Movement")]
     private Camera cam;
@@ -14,12 +15,11 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private float camRotationSpeed;
 
     [Header("Buttons")]
-    [SerializeField] private GameObject upButton;
-    [SerializeField] private GameObject downButton;
+    [SerializeField] private GameObject squadSettingsUI;
+    [SerializeField] private GameObject warTableUI;
 
     [Header("Mission Lists")]
-    [SerializeField] private List<Mission> missionPool;
-    public List<Mission> AvailableMissions;
+    public List<MissionNode> AvailableMissions;
     //  for the selected mission
     private int missionIndex;
 
@@ -76,7 +76,7 @@ public class MissionSelector : MonoBehaviour
     {
         //Debug.Log("CAM Up to " + squadAngle);
         SquadSelect = true;
-        StartCoroutine(CameraRotate(squadAngle, upButton, downButton));
+        StartCoroutine(CameraRotate(squadAngle, squadSettingsUI, warTableUI));
     }
 
     //  look at mission menu
@@ -84,7 +84,7 @@ public class MissionSelector : MonoBehaviour
     {
         //Debug.Log("CAM Table to" + tableAngle + " | " + Quaternion.Euler(tableAngle));
         SquadSelect = false;
-        StartCoroutine(CameraRotate(tableAngle, downButton, upButton));
+        StartCoroutine(CameraRotate(tableAngle, warTableUI, squadSettingsUI));
     }
 
     private IEnumerator CameraRotate(Vector3 angle, GameObject buttonClicked, GameObject buttonAppearing)

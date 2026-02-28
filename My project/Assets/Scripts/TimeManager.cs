@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    [SerializeField] private int currentHour;
-    [SerializeField] private int finalHour;
+    public int CurrentHour;
+    public int FinalHour;
 
     //  counts down, when reaches zero, initiate the bear
-    [SerializeField] private int daysLeft;
+    public int DaysLeft;
     //  when the bear shows up
     //  slowly approaching bear
-    [SerializeField] private int totalDays;
+    public int TotalDays;
 
     public void PassTime()
     {
-        currentHour++;
+        CurrentHour++;
 
-        if (currentHour == finalHour)
+        if (CurrentHour == FinalHour)
         {
-            currentHour = 0;
-            daysLeft--;
+            CurrentHour = 0;
+            DaysLeft--;
         }
     }
 }

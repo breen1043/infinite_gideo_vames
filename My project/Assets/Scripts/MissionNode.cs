@@ -6,10 +6,9 @@ public class MissionNode : MonoBehaviour
 
     public enum Location
     {
-        Hive,
         Forest,
-        Pond,
         Meadow,
+        Pond,
         Picnic
     }
 
@@ -27,11 +26,11 @@ public class MissionNode : MonoBehaviour
 
     public void HoverInfo()
     {
-
+        Debug.Log(gameObject.name);
     }
 
     public void ClickSelect()
     {
-
+        Debug.Log("clicked "+gameObject.name);
     }
 }
