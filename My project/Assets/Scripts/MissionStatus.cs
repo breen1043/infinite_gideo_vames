@@ -14,6 +14,4 @@ public class MissionStatus : MonoBehaviour
     public Status status;
 
     public BeeSquad assignedBeeSquad;
-
-    public PollenHandler.PollenAmount Pollen;
 }
