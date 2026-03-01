@@ -213,15 +213,20 @@ public class BeeSquad : MonoBehaviour
             MissionSelector.instance.BeeSquadGraveyard.Add(this);
             MissionSelector.instance.BeeSquadUnits.Remove(this);
             missionStatus = null;
-            MissionSelector.instance.BeePrevIndex();
             return MissionResult.Failure;
         }
 
 
         missionStatus.status = MissionStatus.Status.complete;
-        Available = true;
+        MissionSelector.instance.BeeSquadGraveyard.Add(this);
+        MissionSelector.instance.BeeSquadUnits.Remove(this);
         missionStatus = null;
         return MissionResult.Success;
+    }
+
+    public void SwarmAttack()
+    {
+
     }
 
     public void LevelUp()

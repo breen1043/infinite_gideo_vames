@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class BlackScreen : MonoBehaviour
 {
     private Image img;
     [SerializeField] private float fadeTime;
+    public TMP_Text daysRemain;
 
     private void Start()
     {

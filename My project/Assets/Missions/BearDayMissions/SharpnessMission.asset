@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: SharpnessMission
   m_EditorClassIdentifier: Assembly-CSharp::Mission
   TargetStats:
-    FlightSpeed: 0
-    DANCE: 0
-    Sharpness: 0
-    Hivemind: 0
+    FlightSpeed: 4
+    DANCE: 2
+    Sharpness: 8
+    Hivemind: 5
   WeightedStat1: 3
   WeightedStat2: 0
   duration: 1
-  Title: 
-  Description: 
-  Location: 0
+  Title: Bee Sharp
+  Description: 'Madam President! If anyone knows how to hit The Bear where it hurts,
+    it would be us. This is what we bees fight for - to protect the hive!  '
+  Location: 3
   Pollen: 0
   Honey: 0

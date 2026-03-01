@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     private InputAction mouseClick;
     private InputAction switchView;
     private InputAction switchCaptain;
+    private InputAction quickDeploy;
     private Action<InputAction.CallbackContext> MouseMove;
     private Vector2 mousePos;
 
@@ -27,12 +28,24 @@ public class PlayerInput : MonoBehaviour
         mouseClick = InputSystem.actions.FindAction("MouseClick");
         switchView = InputSystem.actions.FindAction("SwitchView");
         switchCaptain = InputSystem.actions.FindAction("SwitchCaptain");
+        quickDeploy = InputSystem.actions.FindAction("Deploy");
 
         mousePosDetect.performed += MouseMove;
         switchView.performed += SwitchView;
         switchCaptain.performed += SwitchCaptain;
+        quickDeploy.performed += QuickDeploy;
 
         instance = GetComponent<PlayerInput>();
+    }
+
+    private void QuickDeploy(InputAction.CallbackContext ctx)
+    {
+        if (!MissionSelector.instance.SquadSelect || MissionSelector.instance.Rotating)
+        {
+            return;
+        }
+
+        MissionSelector.instance.Deploy();
     }
 
     private void SwitchCaptain(InputAction.CallbackContext ctx)

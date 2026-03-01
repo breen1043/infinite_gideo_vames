@@ -10,6 +10,9 @@ public class MissionSetter : MonoBehaviour
     public List<Mission> Day3MissionPool;
     public List<Mission> BearDayMissionPool;
     public Transform[] Nodes;
+    public MissionNode hive;
+
+    [SerializeField] private Mission swarmAssault;
 
     private void Start()
     {
@@ -103,6 +106,7 @@ public class MissionSetter : MonoBehaviour
         {
             PopMission(missionPool);
             PopMission(missionPool);
+            hive.mission = swarmAssault;
         }
     }
 }

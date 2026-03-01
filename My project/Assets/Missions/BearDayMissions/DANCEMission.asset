@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: DANCEMission
   m_EditorClassIdentifier: Assembly-CSharp::Mission
   TargetStats:
-    FlightSpeed: 8
-    DANCE: 2
-    Sharpness: 5
-    Hivemind: 3
+    FlightSpeed: 4
+    DANCE: 8
+    Sharpness: 2
+    Hivemind: 5
   WeightedStat1: 2
   WeightedStat2: 0
   duration: 1
-  Title: 
-  Description: 
-  Location: 0
+  Title: Distraction Dance
+  Description: 'The Bear might be big and strong, but we''re sure it''s no match
+    for our fantastic moves! Send us to face the music (and the enemy)! '
+  Location: 1
   Pollen: 0
   Honey: 0
