@@ -194,6 +194,13 @@ public class MissionSelector : MonoBehaviour
         } else {
             UpgradePanel.SetActive(true);
         }
+        for (int i=0; i<4; i++){
+            if ((int)getBeeStat(i+1) < 8) {
+                UpgradeButtons[i].GetComponent<Image>().color = new Color(1.0f, 0.788f, 0.0f);
+            } else {
+                UpgradeButtons[i].GetComponent<Image>().color = new Color(0.4f, 0.2f, 0.5f);
+            }
+        }
     }
 
     public void lvlUp() {
@@ -205,6 +212,7 @@ public class MissionSelector : MonoBehaviour
             BeeSquadUnits[beeSquadIndex].points+=BeeSquadUnits[beeSquadIndex].Level;
             BeeSquadUnits[beeSquadIndex].Level += 1;
             
+            
 
             UpgradePanel.SetActive(true);
         } else {
@@ -215,26 +223,10 @@ public class MissionSelector : MonoBehaviour
 
     public void statLvlUp(int i) {
         int temp = 0;
-        switch (i) {
-            case 1:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed;
-                break;
-            case 2:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.DANCE;
-                break;
-            case 3:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness;
-                break;
-            case 4:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind;
-                break;
-        }
+        temp = (int)getBeeStat(i);
         if (temp < 8) {
             temp += 1;
             BeeSquadUnits[beeSquadIndex].points -= 1;
-            if (temp >= 8) {
-                UpgradeButtons[i-1].GetComponent<Image>().color = new Color(0.4f, 0.2f, 0.5f);
-            }
         } else {
             Debug.Log("Overleveled, lvlup failed");
         }
@@ -255,6 +247,21 @@ public class MissionSelector : MonoBehaviour
         
         
         SetStatBars();
+    }
+
+    public int getBeeStat(int i) {
+        switch (i) {
+            case 1:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed;
+            case 2:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.DANCE;
+            case 3:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness;
+            case 4:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind;
+            default:
+                return -1;
+        }
     }
 
     //  look at squad menu
