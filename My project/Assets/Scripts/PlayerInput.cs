@@ -37,7 +37,7 @@ public class PlayerInput : MonoBehaviour
 
     private void SwitchCaptain(InputAction.CallbackContext ctx)
     {
-        if(popUpContainer.childCount != 0)
+        if(popUpContainer.childCount != 0 || !MissionSelector.instance.SquadSelect)
         {
             return;
         }

@@ -70,7 +70,7 @@ public class MissionSelector : MonoBehaviour
             return;
         }
 
-        if (beeSquadIndex >= BeeSquadUnits.Count || beeSquadIndex < 0)
+        if (!(beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0))
         {
             return;
         }
@@ -131,7 +131,7 @@ public class MissionSelector : MonoBehaviour
     //  cycle through bee squad members
     public void BeePrevIndex()
     {
-        if (beeSquadIndex >= BeeSquadUnits.Count || beeSquadIndex < 0)
+        if (beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0)
         {
             BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
         }
@@ -166,7 +166,7 @@ public class MissionSelector : MonoBehaviour
 
     public void BeeNextIndex()
     {
-        if (beeSquadIndex >= BeeSquadUnits.Count || beeSquadIndex < 0)
+        if (beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0)
         {
             BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
         }
