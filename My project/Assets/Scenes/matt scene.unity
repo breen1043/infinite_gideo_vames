@@ -1239,6 +1239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MissionDescription
   titleText: {fileID: 742827137}
   descriptionText: {fileID: 1697073810}
+  MissionLog: []
+  logIndex: 0
 --- !u!1 &572087452
 GameObject:
   m_ObjectHideFlags: 0
@@ -5387,7 +5389,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e693be5c115011949b82b344d46a2484, type: 2}
   - {fileID: 11400000, guid: e4601ea6c0e7baf4e934c6a6eed156f8, type: 2}
   - {fileID: 11400000, guid: b6dbd1e4d5f4c904894d5668f6ba2e2d, type: 2}
-  BearDayMissionPool: []
+  BearDayMissionPool:
+  - {fileID: 11400000, guid: 214e78fd2f799414b8b01c09499be515, type: 2}
+  - {fileID: 11400000, guid: 16a8c74743d381d4089ae8526c9926cf, type: 2}
+  - {fileID: 11400000, guid: be7cba6a0e6a6bf499a7542dd56a75cd, type: 2}
+  - {fileID: 11400000, guid: caa0c9bd3ab9dcb4593669e1d3adda11, type: 2}
   Nodes:
   - {fileID: 1741525746}
   - {fileID: 222959094}
