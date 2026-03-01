@@ -452,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f2912edddc7214ea13843c91a43ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
+  squadname: 
   Level: 2
   SquadStats:
     FlightSpeed: 4
@@ -1278,6 +1279,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &661172172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5131913674194951368, guid: 0cac0a7f7ba2f8147a31205bc70611dc, type: 3}
+  m_PrefabInstance: {fileID: 136924540974821118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcd7daba6d5e0d44bf71d3728661637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionNode
 --- !u!1 &706992278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,6 +1470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f2912edddc7214ea13843c91a43ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
+  squadname: 
   Level: 2
   SquadStats:
     FlightSpeed: 2
@@ -2116,6 +2129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f2912edddc7214ea13843c91a43ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
+  squadname: 
   Level: 2
   SquadStats:
     FlightSpeed: 2
@@ -3090,6 +3104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f2912edddc7214ea13843c91a43ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
+  squadname: 
   Level: 2
   SquadStats:
     FlightSpeed: 3
@@ -4070,6 +4085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlackScreen
   fadeTime: 0
+  daysRemain: {fileID: 1298997799}
 --- !u!1 &1630510018
 GameObject:
   m_ObjectHideFlags: 0
@@ -5309,11 +5325,15 @@ MonoBehaviour:
   warTableUI: {fileID: 1473440926}
   squadSelectUI: {fileID: 1043696753}
   lvlUpButton: {fileID: 0}
+  newBeeCanvas: {fileID: 0}
   MissionLog: []
   selectedMission: {fileID: 0}
-  statBars: []
+  beeNamer: {fileID: 0}
+  statUpgradeBars: []
+  statDeployBars: []
   pollen_counter: {fileID: 0}
   UpgradePanel: {fileID: 0}
+  DeployPanel: {fileID: 0}
   UpgradeButtons: []
   DisplayCamera: {fileID: 1381410764}
   orbitSpeed: 0
@@ -5399,6 +5419,8 @@ MonoBehaviour:
   - {fileID: 222959094}
   - {fileID: 128315588}
   - {fileID: 1961789209}
+  hive: {fileID: 661172172}
+  swarmAssault: {fileID: 11400000, guid: f0c2d33ad100b5e42a6090f1099cec29, type: 2}
 --- !u!114 &2129004917
 MonoBehaviour:
   m_ObjectHideFlags: 0

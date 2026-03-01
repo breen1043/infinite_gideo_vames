@@ -15,13 +15,15 @@ MonoBehaviour:
   TargetStats:
     FlightSpeed: 8
     DANCE: 2
-    Sharpness: 6
+    Sharpness: 5
     Hivemind: 4
   WeightedStat1: 1
   WeightedStat2: 0
   duration: 1
-  Title: 
-  Description: 
-  Location: 0
+  Title: Fight and Flight
+  Description: 'You know us, President Comb. We''re your elite flying force, the
+    best of the best. We''ll get in and out fast, and hit The Bear even faster. It
+    won''t even know we''re there. '
+  Location: 2
   Pollen: 0
   Honey: 0

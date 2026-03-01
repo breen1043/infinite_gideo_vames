@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
-  m_Name: HivemindMission
+  m_Name: SwarmAttack
   m_EditorClassIdentifier: Assembly-CSharp::Mission
   TargetStats:
-    FlightSpeed: 3
-    DANCE: 2
-    Sharpness: 4
-    Hivemind: 8
-  WeightedStat1: 4
+    FlightSpeed: 0
+    DANCE: 0
+    Sharpness: 0
+    Hivemind: 0
+  WeightedStat1: 0
   WeightedStat2: 0
   duration: 1
-  Title: B(ee)rain Blast
-  Description: 'A creature as clumsy as The Bear would stand no chance against a
-    coordinated attack- especially not an attack as well planned as ours! For the
-    Hive! '
-  Location: 0
+  Title: Sting Operation!
+  Description: All or nothing! This is our last buzzah! Send all of your remaining
+    troops to attack The Bear and hope that all of your hard work is enough...
+  Location: 4
   Pollen: 0
-  Honey: 0
+  Honey: 1

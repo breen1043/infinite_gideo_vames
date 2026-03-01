@@ -23,7 +23,7 @@ public class TimeManager : MonoBehaviour
     private void Start()
     {
         instance = GetComponent<TimeManager>();
-        DaysLeft = TotalDays;
+        DaysLeft = TotalDays + 1;
     }
 
     public void PassTime()
@@ -89,6 +89,20 @@ public class TimeManager : MonoBehaviour
                 continue;
             }
 
+            if (BearFight)
+            {
+                if (MissionSelector.instance.DeployedBeeSquads[i].missionStatus.Mission.Honey)
+                {
+                    MissionSelector.instance.DeployedBeeSquads[i].SwarmAttack();
+                }
+                else
+                {
+                    MissionSelector.instance.DeployedBeeSquads[i].BearCheck();
+                }
+                MissionSelector.instance.DeployedBeeSquads.RemoveAt(i);
+                return;
+            }
+
             MissionSelector.instance.DeployedBeeSquads[i].missionStatus.HoursUntilComplete--;
 
             if (MissionSelector.instance.DeployedBeeSquads[i].missionStatus.HoursUntilComplete <= 0)
@@ -103,6 +117,24 @@ public class TimeManager : MonoBehaviour
     private IEnumerator DayEndUI()
     {
         yield return sec;
+
+        MissionSelector.instance.MissionLog.Clear();
+
+        switch (DaysLeft)
+        {
+            case 3:
+                blackScreen.gameObject.GetComponent<BlackScreen>().daysRemain.text = "Three days remain.";
+                break;
+            case 2:
+                blackScreen.gameObject.GetComponent<BlackScreen>().daysRemain.text = "Two days remain.";
+                break;
+            case 1:
+                blackScreen.gameObject.GetComponent<BlackScreen>().daysRemain.text = "One day remains.";
+                break;
+            case 0:
+                blackScreen.gameObject.GetComponent<BlackScreen>().daysRemain.text = "The Bear arrives at dawn.";
+                break;
+        }
         dayEndUI.SetActive(true);
         MissionSetter.instance.ClearMissions();
     }

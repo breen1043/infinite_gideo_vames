@@ -89,10 +89,11 @@ public class MissionSelector : MonoBehaviour
             return;
         }
 
-        if (!BeeSquadUnits[beeSquadIndex].Available)
+        if (!BeeSquadUnits[beeSquadIndex].Available && !selectedMission.mission.Honey)
         {
             return;
         }
+
 
         if (selectedMission.mission.Honey)
         {
@@ -103,6 +104,7 @@ public class MissionSelector : MonoBehaviour
 
 
         TimeManager.instance.PassTime();
+
         MissionStatus newListItem = new MissionStatus();
         newListItem.Mission = selectedMission.mission;
         newListItem.HoursUntilComplete = newListItem.Mission.duration;
@@ -115,6 +117,7 @@ public class MissionSelector : MonoBehaviour
             //  BeeSquadUnits[beeSquadIndex].HoursUnilArrival = selectedMission.mission.duration;
             BeeSquadUnits[beeSquadIndex].missionStatus = newListItem;
             DeployedBeeSquads.Add(BeeSquadUnits[beeSquadIndex]);
+            BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
         }
 
         newListItem.status = !selectedMission.mission.Honey ? MissionStatus.Status.inProgress : MissionStatus.Status.complete;
@@ -137,15 +140,48 @@ public class MissionSelector : MonoBehaviour
         }
 
         selectedMission = null;
+        TimeManager.instance.PassTime();
+        MissionDescription.instance.ClearDescription();
 
-        
 
         Debug.Log("deployed");
     }
 
     public void BearFightDeploy()
     {
+        if (!(beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0))
+        {
+            return;
+        }
 
+        if (!selectedMission || (BeeSquadUnits.Count <= DeployedBeeSquads.Count && !selectedMission.mission.Honey))
+        {
+            return;
+        }
+
+        if (!BeeSquadUnits[beeSquadIndex].Available && !selectedMission.mission.Honey)
+        {
+            return;
+        }
+
+        MissionStatus newListItem = new MissionStatus();
+        newListItem.Mission = selectedMission.mission;
+        newListItem.HoursUntilComplete = newListItem.Mission.duration;
+
+        newListItem.assignedBeeSquad = BeeSquadUnits[beeSquadIndex];
+
+        BeeSquadUnits[beeSquadIndex].Available = false;
+        //  BeeSquadUnits[beeSquadIndex].HoursUnilArrival = selectedMission.mission.duration;
+        BeeSquadUnits[beeSquadIndex].missionStatus = newListItem;
+        DeployedBeeSquads.Add(BeeSquadUnits[beeSquadIndex]);
+        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+
+        newListItem.status = !selectedMission.mission.Honey ? MissionStatus.Status.inProgress : MissionStatus.Status.complete;
+        MissionLog.Add(newListItem);
+
+        selectedMission = null;
+        TimeManager.instance.PassTime();
+        MissionDescription.instance.ClearDescription();
     }
 
     //  cycle through bee squad members
