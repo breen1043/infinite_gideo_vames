@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager instance;
+
     public int CurrentHour;
     public int FinalHour;
 
@@ -10,6 +12,12 @@ public class TimeManager : MonoBehaviour
     //  when the bear shows up
     //  slowly approaching bear
     public int TotalDays;
+
+    private void Start()
+    {
+        instance = GetComponent<TimeManager>();
+        DaysLeft = TotalDays;
+    }
 
     public void PassTime()
     {

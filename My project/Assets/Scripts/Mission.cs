@@ -24,6 +24,7 @@ public class Mission : ScriptableObject
     public int duration;
 
     [Header("Mission Details")]
+    [TextArea(0, 18)]
     public string Title;
     [TextArea(0, 30)]
     public string Description;

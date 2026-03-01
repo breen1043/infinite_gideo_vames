@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class MissionSelector : MonoBehaviour
 {
-    private TimeManager timeManager;
-    private MissionSetter missionSetter;
+    public static MissionSelector instance;
 
     [Header("Camera Movement")]
     private Camera cam;
@@ -15,13 +14,13 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private float camRotationSpeed;
 
     [Header("Buttons")]
-    [SerializeField] private GameObject squadSettingsUI;
     [SerializeField] private GameObject warTableUI;
+    [SerializeField] private GameObject squadSelectUI;
 
     [Header("Mission Lists")]
-    public List<MissionNode> AvailableMissions;
+    public List<MissionNode> Mission;
     //  for the selected mission
-    private int missionIndex;
+    public MissionNode selectedMission;
 
     [Space(5)]
     public List<BeeSquad> BeeSquadUnits;
@@ -31,13 +30,23 @@ public class MissionSelector : MonoBehaviour
     private int beeSquadIndex;
 
     //  view mode: false = looking at map, true = selecting units
-    private bool SquadSelect;
+    public bool SquadSelect;
 
     private void Start()
     {
         cam = Camera.main;
-        //  assuming we're stuffing all the scripts on one empty object
-        timeManager = GetComponent<TimeManager>();
+        instance = GetComponent<MissionSelector>();
+    }
+
+    //  send you bees out to DIE
+    public void Deploy()
+    {
+        if (selectedMission)
+        {
+            Debug.Log("deployed");
+            TimeManager.instance.PassTime();
+            selectedMission = null;
+        }
     }
 
     //  cycle through bee squad members
@@ -76,15 +85,15 @@ public class MissionSelector : MonoBehaviour
     {
         //Debug.Log("CAM Up to " + squadAngle);
         SquadSelect = true;
-        StartCoroutine(CameraRotate(squadAngle, squadSettingsUI, warTableUI));
+        StartCoroutine(CameraRotate(squadAngle, warTableUI, squadSelectUI));
     }
 
     //  look at mission menu
     public void TableAngle()
     {
         //Debug.Log("CAM Table to" + tableAngle + " | " + Quaternion.Euler(tableAngle));
+        StartCoroutine(CameraRotate(tableAngle, squadSelectUI, warTableUI));
         SquadSelect = false;
-        StartCoroutine(CameraRotate(tableAngle, warTableUI, squadSettingsUI));
     }
 
     private IEnumerator CameraRotate(Vector3 angle, GameObject buttonClicked, GameObject buttonAppearing)
