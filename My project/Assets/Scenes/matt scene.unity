@@ -4849,6 +4849,7 @@ MonoBehaviour:
   pollen: 0
   lvl_points: 0
   SquadSelect: 0
+  Rotating: 0
 --- !u!114 &2129004915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4861,6 +4862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 764dce4b1c653604794353b6cc81a855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInput
+  popUpContainer: {fileID: 224988068}
 --- !u!114 &2129004916
 MonoBehaviour:
   m_ObjectHideFlags: 0
