@@ -34,4 +34,7 @@ public class Mission : ScriptableObject
 
     [Space(5)]
     public PollenHandler.PollenAmount Pollen;
+
+    [Space(5)]
+    public bool Honey;
 }

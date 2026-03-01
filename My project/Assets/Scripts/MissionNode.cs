@@ -9,7 +9,8 @@ public class MissionNode : MonoBehaviour
         Forest,
         Meadow,
         Pond,
-        Picnic
+        Picnic,
+        Hive
     }
 
     void Start()

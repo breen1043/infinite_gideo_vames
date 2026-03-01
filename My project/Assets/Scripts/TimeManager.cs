@@ -28,5 +28,21 @@ public class TimeManager : MonoBehaviour
             CurrentHour = 0;
             DaysLeft--;
         }
+
+        for (int i=0; i<MissionSelector.instance.DeployedBeeSquads.Count; i++)
+        {
+            if(MissionSelector.instance.DeployedBeeSquads[i].missionStatus == null)
+            {
+                continue;
+            }
+
+            MissionSelector.instance.DeployedBeeSquads[i].missionStatus.HoursUntilComplete--;
+
+            if (MissionSelector.instance.DeployedBeeSquads[i].missionStatus.HoursUntilComplete == 0)
+            {
+                MissionSelector.instance.DeployedBeeSquads[i].MissionCheck();
+                MissionSelector.instance.DeployedBeeSquads.RemoveAt(i);
+            }
+        }
     }
 }

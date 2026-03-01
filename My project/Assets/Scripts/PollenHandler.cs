@@ -11,6 +11,7 @@ public class PollenHandler : MonoBehaviour
 
     public enum PollenAmount
     {
+        None,
         Low,
         Medium,
         High

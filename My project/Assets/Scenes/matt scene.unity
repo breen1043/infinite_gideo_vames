@@ -317,12 +317,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 4
-    DANCE: 2
-    Sharpness: 2
+    FlightSpeed: 5
+    DANCE: 3
+    Sharpness: 4
     Hivemind: 2
   Available: 1
-  HoursUnilArrival: 0
+  missionStatus:
+    Mission: {fileID: 0}
+    status: 0
+    HoursUntilComplete: 0
+    assignedBeeSquad: {fileID: 0}
 --- !u!1 &222959093
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,12 +811,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 2
-    DANCE: 2
+    FlightSpeed: 3
+    DANCE: 4
     Sharpness: 2
-    Hivemind: 4
+    Hivemind: 5
   Available: 1
-  HoursUnilArrival: 0
+  missionStatus:
+    Mission: {fileID: 0}
+    status: 0
+    HoursUntilComplete: 0
+    assignedBeeSquad: {fileID: 0}
 --- !u!136 &719340518
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1323,12 +1331,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 2
+    FlightSpeed: 3
     DANCE: 2
-    Sharpness: 4
-    Hivemind: 2
+    Sharpness: 5
+    Hivemind: 4
   Available: 1
-  HoursUnilArrival: 0
+  missionStatus:
+    Mission: {fileID: 0}
+    status: 0
+    HoursUntilComplete: 0
+    assignedBeeSquad: {fileID: 0}
 --- !u!136 &859626364
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2027,12 +2039,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 2
-    DANCE: 4
-    Sharpness: 2
+    FlightSpeed: 4
+    DANCE: 5
+    Sharpness: 3
     Hivemind: 2
   Available: 1
-  HoursUnilArrival: 0
+  missionStatus:
+    Mission: {fileID: 0}
+    status: 0
+    HoursUntilComplete: 0
+    assignedBeeSquad: {fileID: 0}
 --- !u!136 &1384934002
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3660,7 +3676,7 @@ GameObject:
   - component: {fileID: 2129004916}
   - component: {fileID: 2129004917}
   m_Layer: 0
-  m_Name: testScriptHolder
+  m_Name: ScriptHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3738,6 +3754,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2144ad8b6e258b41845b7a7d9c63a0a, type: 2}
   - {fileID: 11400000, guid: aed8d584b2c012648b946003e090d23d, type: 2}
   - {fileID: 11400000, guid: a2144ad8b6e258b41845b7a7d9c63a0a, type: 2}
+  - {fileID: 11400000, guid: d05ceb7d61fdf8e4ca0d3d3b8af50d1f, type: 2}
+  - {fileID: 11400000, guid: d05ceb7d61fdf8e4ca0d3d3b8af50d1f, type: 2}
+  - {fileID: 11400000, guid: d05ceb7d61fdf8e4ca0d3d3b8af50d1f, type: 2}
   Day2MissionPool: []
   Day3MissionPool: []
   Nodes:
@@ -3813,6 +3832,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mapNode
       objectReference: {fileID: 0}
+    - target: {fileID: 5131913674194951368, guid: 0cac0a7f7ba2f8147a31205bc70611dc, type: 3}
+      propertyPath: mission
+      value: 
+      objectReference: {fileID: 11400000, guid: 08bb4cd8e04f2e94f9b2e53d4b29abff, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
