@@ -18,16 +18,17 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private GameObject squadSelectUI;
 
     [Header("Mission Lists")]
-    public List<MissionNode> Mission;
+    public List<MissionStatus> MissionLog;
     //  for the selected mission
     public MissionNode selectedMission;
 
     [Space(5)]
     public List<BeeSquad> BeeSquadUnits;
+    public List<BeeSquad> DeployedBeeSquads;
     //  not sure if this needs to be a list, but we would have access to names of the dead
     public List<BeeSquad> BeeSquadGraveyard;
     //  for the selected member
-    private int beeSquadIndex;
+    public int beeSquadIndex;
 
     //  view mode: false = looking at map, true = selecting units
     public bool SquadSelect;
@@ -41,17 +42,31 @@ public class MissionSelector : MonoBehaviour
     //  send you bees out to DIE
     public void Deploy()
     {
-        if (selectedMission)
+        if (!selectedMission)
         {
-            Debug.Log("deployed");
-            TimeManager.instance.PassTime();
-            selectedMission = null;
+            return;
         }
+
+        TimeManager.instance.PassTime();
+        MissionStatus newListItem = new MissionStatus();
+        newListItem.Mission = selectedMission.mission;
+        newListItem.assignedBeeSquad = BeeSquadUnits[beeSquadIndex];
+
+        BeeSquadUnits[beeSquadIndex].Available = false;
+        BeeSquadUnits[beeSquadIndex].HoursUnilArrival = selectedMission.mission.duration;
+        DeployedBeeSquads.Add(BeeSquadUnits[beeSquadIndex]);
+
+        newListItem.status = MissionStatus.Status.inProgress;
+        MissionLog.Add(newListItem);
+        selectedMission = null;
+        Debug.Log("deployed");
     }
 
     //  cycle through bee squad members
     public void BeePrevIndex()
     {
+        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+
         beeSquadIndex--;
 
         if (!BeeSquadUnits[beeSquadIndex].Available)
@@ -63,10 +78,14 @@ public class MissionSelector : MonoBehaviour
         {
             beeSquadIndex = BeeSquadUnits.Count - 1;
         }
+
+        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
     }
 
     public void BeeNextIndex()
     {
+        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+
         beeSquadIndex++;
 
         if (!BeeSquadUnits[beeSquadIndex].Available)
@@ -78,6 +97,8 @@ public class MissionSelector : MonoBehaviour
         {
             beeSquadIndex = 0;
         }
+
+        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
     }
 
     //  look at squad menu

@@ -31,4 +31,7 @@ public class Mission : ScriptableObject
 
     [Space(5)]
     public MissionNode.Location Location;
+
+    [Space(5)]
+    public PollenHandler.PollenAmount Pollen;
 }
