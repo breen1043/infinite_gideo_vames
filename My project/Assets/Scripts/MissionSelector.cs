@@ -50,6 +50,7 @@ public class MissionSelector : MonoBehaviour
 
     //  view mode: false = looking at map, true = selecting units
     public bool SquadSelect;
+    public bool Rotating;
 
     private void Start()
     {
@@ -66,6 +67,11 @@ public class MissionSelector : MonoBehaviour
         if (TimeManager.instance.BearFight)
         {
             BearFightDeploy();
+            return;
+        }
+
+        if (beeSquadIndex >= BeeSquadUnits.Count || beeSquadIndex < 0)
+        {
             return;
         }
 
@@ -125,7 +131,10 @@ public class MissionSelector : MonoBehaviour
     //  cycle through bee squad members
     public void BeePrevIndex()
     {
-        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        if (beeSquadIndex >= BeeSquadUnits.Count || beeSquadIndex < 0)
+        {
+            BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        }
 
         beeSquadIndex--;
         
@@ -141,7 +150,7 @@ public class MissionSelector : MonoBehaviour
 
         if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
         {
-            for (int i=0; i< BeeSquadUnits.Count; i++)
+            for (int i=0; i <= BeeSquadUnits.Count; i++)
             {
                 BeePrevIndex();
             }
@@ -157,7 +166,10 @@ public class MissionSelector : MonoBehaviour
 
     public void BeeNextIndex()
     {
-        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        if (beeSquadIndex >= BeeSquadUnits.Count || beeSquadIndex < 0)
+        {
+            BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        }
 
         beeSquadIndex++;
         
@@ -173,7 +185,7 @@ public class MissionSelector : MonoBehaviour
 
         if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
         {
-            for (int i = 0; i < BeeSquadUnits.Count; i++)
+            for (int i = 0; i <= BeeSquadUnits.Count; i++)
             {
                 BeeNextIndex();
             }
@@ -298,16 +310,25 @@ public class MissionSelector : MonoBehaviour
     public void SquadAngle()
     {
         //Debug.Log("CAM Up to " + squadAngle);
-        SquadSelect = true;
-        StartCoroutine(CameraRotate(squadAngle, warTableUI, squadSelectUI));
+        if (!Rotating)
+        {
+            Rotating = true;
+            SquadSelect = true;
+            StartCoroutine(CameraRotate(squadAngle, warTableUI, squadSelectUI));
+        }
+        
     }
 
     //  look at mission menu
     public void TableAngle()
     {
         //Debug.Log("CAM Table to" + tableAngle + " | " + Quaternion.Euler(tableAngle));
-        StartCoroutine(CameraRotate(tableAngle, squadSelectUI, warTableUI));
-        SquadSelect = false;
+        if (!Rotating)
+        {
+            Rotating = true;
+            StartCoroutine(CameraRotate(tableAngle, squadSelectUI, warTableUI));
+            SquadSelect = false;
+        }
     }
 
     private IEnumerator CameraRotate(Vector3 angle, GameObject buttonClicked, GameObject buttonAppearing)
@@ -325,6 +346,7 @@ public class MissionSelector : MonoBehaviour
         //Debug.Log("loop end");
 
         buttonAppearing.SetActive(true);
+        Rotating = false;
         StopAllCoroutines();
     }
 

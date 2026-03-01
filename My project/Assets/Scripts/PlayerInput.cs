@@ -10,8 +10,12 @@ public class PlayerInput : MonoBehaviour
 
     private InputAction mousePosDetect;
     private InputAction mouseClick;
+    private InputAction switchView;
+    private InputAction switchCaptain;
     private Action<InputAction.CallbackContext> MouseMove;
     private Vector2 mousePos;
+
+    [SerializeField] private Transform popUpContainer;
 
     private void Start()
     {
@@ -21,15 +25,59 @@ public class PlayerInput : MonoBehaviour
 
         mousePosDetect = InputSystem.actions.FindAction("MousePosition");
         mouseClick = InputSystem.actions.FindAction("MouseClick");
+        switchView = InputSystem.actions.FindAction("SwitchView");
+        switchCaptain = InputSystem.actions.FindAction("SwitchCaptain");
 
         mousePosDetect.performed += MouseMove;
+        switchView.performed += SwitchView;
+        switchCaptain.performed += SwitchCaptain;
 
         instance = GetComponent<PlayerInput>();
+    }
+
+    private void SwitchCaptain(InputAction.CallbackContext ctx)
+    {
+        if(popUpContainer.childCount != 0)
+        {
+            return;
+        }
+
+        float direction = ctx.ReadValue<float>();
+
+        if (direction < 0)
+        {
+            MissionSelector.instance.BeePrevIndex();
+        }
+        else
+        {
+            MissionSelector.instance.BeeNextIndex();
+        }
+    }
+
+    private void SwitchView(InputAction.CallbackContext ctx)
+    {
+        if (popUpContainer.childCount != 0)
+        {
+            return;
+        }
+
+        float direction = ctx.ReadValue<float>();
+
+        if(direction < 0)
+        {
+            MissionSelector.instance.TableAngle();
+        }
+        else
+        {
+            MissionSelector.instance.SquadAngle();
+        }
     }
 
     private void OnDestroy()
     {
         mousePosDetect.performed -= MouseMove;
+        switchView.performed -= SwitchView;
+        switchCaptain.performed -= SwitchCaptain;
     }
 
     private void Update()
