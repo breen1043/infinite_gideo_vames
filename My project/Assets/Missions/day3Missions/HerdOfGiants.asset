@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
-  m_Name: ViciousMockerbee
+  m_Name: HerdOfGiants
   m_EditorClassIdentifier: Assembly-CSharp::Mission
   TargetStats:
-    FlightSpeed: 1
-    DANCE: 3
-    Sharpness: 1
+    FlightSpeed: 6
+    DANCE: 2
+    Sharpness: 5
     Hivemind: 4
-  WeightedStat1: 2
-  WeightedStat2: 4
-  duration: 1
-  Title: Viscious Mockerbee
-  Description: Madam President! Some fiend near the pond has slandered the good name
-    of our hive! We must defend our honor in a battle of insults immediately. Send
-    your sharpest and most convincing bees posthaste!
-  Location: 2
-  Pollen: 1
+  WeightedStat1: 1
+  WeightedStat2: 3
+  duration: 2
+  Title: Herd of Giants???
+  Description: A mass of giants has convened near the hive! A greater amount of them
+    than ever seen beefore! Rally the troops! Bee who strikes first (and strikes
+    hard) prevails!
+  Location: 3
+  Pollen: 3
   Honey: 0

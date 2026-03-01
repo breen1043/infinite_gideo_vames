@@ -31,6 +31,12 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private Image pollen_counter;
     [SerializeField] private GameObject UpgradePanel;
     [SerializeField] private List<GameObject> UpgradeButtons;
+    [SerializeField] private GameObject DisplayCamera;
+    [SerializeField] private float orbitSpeed;
+    [SerializeField] private float bobAmplitude;
+    [SerializeField] private float bobFrequency;
+    
+
 
     [Space(5)]
     public List<BeeSquad> BeeSquadUnits;
@@ -51,6 +57,7 @@ public class MissionSelector : MonoBehaviour
         instance = GetComponent<MissionSelector>();
         lvl_points = 0;
         SetStatBars();
+        StartCoroutine(CameraOrbitForever());
     }
 
     //  send you bees out to DIE
@@ -217,6 +224,13 @@ public class MissionSelector : MonoBehaviour
         } else {
             UpgradePanel.SetActive(true);
         }
+        for (int i=0; i<4; i++){
+            if ((int)getBeeStat(i+1) < 8) {
+                UpgradeButtons[i].GetComponent<Image>().color = new Color(1.0f, 0.788f, 0.0f);
+            } else {
+                UpgradeButtons[i].GetComponent<Image>().color = new Color(0.4f, 0.2f, 0.5f);
+            }
+        }
     }
 
     public void lvlUp() {
@@ -228,6 +242,7 @@ public class MissionSelector : MonoBehaviour
             BeeSquadUnits[beeSquadIndex].points+=BeeSquadUnits[beeSquadIndex].Level;
             BeeSquadUnits[beeSquadIndex].Level += 1;
             
+            
 
             UpgradePanel.SetActive(true);
         } else {
@@ -238,26 +253,10 @@ public class MissionSelector : MonoBehaviour
 
     public void statLvlUp(int i) {
         int temp = 0;
-        switch (i) {
-            case 1:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed;
-                break;
-            case 2:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.DANCE;
-                break;
-            case 3:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness;
-                break;
-            case 4:
-                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind;
-                break;
-        }
+        temp = (int)getBeeStat(i);
         if (temp < 8) {
             temp += 1;
             BeeSquadUnits[beeSquadIndex].points -= 1;
-            if (temp >= 8) {
-                UpgradeButtons[i-1].GetComponent<Image>().color = new Color(0.4f, 0.2f, 0.5f);
-            }
         } else {
             Debug.Log("Overleveled, lvlup failed");
         }
@@ -278,6 +277,21 @@ public class MissionSelector : MonoBehaviour
         
         
         SetStatBars();
+    }
+
+    public int getBeeStat(int i) {
+        switch (i) {
+            case 1:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed;
+            case 2:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.DANCE;
+            case 3:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness;
+            case 4:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind;
+            default:
+                return -1;
+        }
     }
 
     //  look at squad menu
@@ -312,5 +326,23 @@ public class MissionSelector : MonoBehaviour
 
         buttonAppearing.SetActive(true);
         StopAllCoroutines();
+    }
+
+    private IEnumerator CameraOrbitForever() { 
+        Vector3 offset = new Vector3(0.0f,2.33f,-5.0f);
+        while (true) { 
+            offset = Quaternion.AngleAxis(orbitSpeed * Time.deltaTime, Vector3.up) * offset;
+            DisplayCamera.transform.position = BeeSquadUnits[beeSquadIndex].gameObject.transform.position + offset;
+            Vector3 direction = (BeeSquadUnits[beeSquadIndex].gameObject.transform.position - DisplayCamera.transform.position).normalized;
+            Quaternion lookRot = Quaternion.LookRotation(direction);
+            DisplayCamera.transform.rotation = Quaternion.Euler( 25f, lookRot.eulerAngles.y, 0f );
+
+            float bob = Mathf.Sin(Time.time * bobFrequency) * bobAmplitude;
+            Vector3 pos = DisplayCamera.transform.position;
+            pos.y += bob;
+            DisplayCamera.transform.position = pos;
+            
+            yield return null;
+        } 
     }
 }

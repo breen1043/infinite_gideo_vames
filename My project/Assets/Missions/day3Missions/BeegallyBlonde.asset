@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: BeegallyBlonde
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 2
+    DANCE: 5
+    Sharpness: 3
+    Hivemind: 4
+  WeightedStat1: 2
+  WeightedStat2: 4
+  duration: 2
+  Title: Beegally Blonde
+  Description: "Madam President, a local cricket troupe has invited some of our hive
+    to their performance of Beegally Blonde! (In hindsight, it only makes sense that
+    we were invited\u2026) Let's send our best dancers. Of course, they should work
+    well with others."
+  Location: 1
+  Pollen: 2
+  Honey: 0

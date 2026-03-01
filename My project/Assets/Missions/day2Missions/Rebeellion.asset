@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: Rebeellion
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 2
+    DANCE: 5
+    Sharpness: 3
+    Hivemind: 1
+  WeightedStat1: 2
+  WeightedStat2: 3
+  duration: 3
+  Title: Rebeellion
+  Description: President Comb! A troop of our bees on expedition has gone rogue,
+    and for some reason they don't want to come back! Send your best dancers and
+    strongest fighters to make them see reason again, one way or another.
+  Location: 1
+  Pollen: 3
+  Honey: 0

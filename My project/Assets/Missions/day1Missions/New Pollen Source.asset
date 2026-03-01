@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: New Pollen Source
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 1
+    DANCE: 4
+    Sharpness: 1
+    Hivemind: 3
+  WeightedStat1: 2
+  WeightedStat2: 4
+  duration: 2
+  Title: New Pollen Source
+  Description: ' A new flower field has appeared overnight! It might be the work
+    of the giants. Other hives are flying to scout it as we speak. A squad of bees
+    that can negotiate well and have good team communication would be recommended, 
+    Madam President.'
+  Location: 1
+  Pollen: 1
+  Honey: 0
