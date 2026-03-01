@@ -27,7 +27,7 @@ public class MissionNode : MonoBehaviour
 
     public void HoverInfo()
     {
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
     }
 
     public void ClickSelect()

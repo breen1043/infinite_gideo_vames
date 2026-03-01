@@ -50,6 +50,7 @@ public class MissionSelector : MonoBehaviour
 
     //  view mode: false = looking at map, true = selecting units
     public bool SquadSelect;
+    public bool Rotating;
 
     private void Start()
     {
@@ -63,7 +64,18 @@ public class MissionSelector : MonoBehaviour
     //  send you bees out to DIE
     public void Deploy()
     {
-        if (!selectedMission || BeeSquadUnits.Count <= DeployedBeeSquads.Count)
+        if (TimeManager.instance.BearFight)
+        {
+            BearFightDeploy();
+            return;
+        }
+
+        if (!(beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0))
+        {
+            return;
+        }
+
+        if (!selectedMission || (BeeSquadUnits.Count <= DeployedBeeSquads.Count && !selectedMission.mission.Honey))
         {
             return;
         }
@@ -111,10 +123,18 @@ public class MissionSelector : MonoBehaviour
         Debug.Log("deployed");
     }
 
+    public void BearFightDeploy()
+    {
+
+    }
+
     //  cycle through bee squad members
     public void BeePrevIndex()
     {
-        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        if (beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0)
+        {
+            BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        }
 
         beeSquadIndex--;
         
@@ -130,7 +150,11 @@ public class MissionSelector : MonoBehaviour
 
         if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
         {
-            BeePrevIndex();
+            for (int i=0; i <= BeeSquadUnits.Count; i++)
+            {
+                BeePrevIndex();
+            }
+            
         }
 
         if (BeeSquadUnits.Count > DeployedBeeSquads.Count)
@@ -142,7 +166,10 @@ public class MissionSelector : MonoBehaviour
 
     public void BeeNextIndex()
     {
-        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        if (beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0)
+        {
+            BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
+        }
 
         beeSquadIndex++;
         
@@ -158,7 +185,10 @@ public class MissionSelector : MonoBehaviour
 
         if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
         {
-            BeeNextIndex();
+            for (int i = 0; i <= BeeSquadUnits.Count; i++)
+            {
+                BeeNextIndex();
+            }
         }
 
         if (BeeSquadUnits.Count > DeployedBeeSquads.Count)
@@ -182,6 +212,11 @@ public class MissionSelector : MonoBehaviour
         stat3.fillAmount = Mathf.Clamp01(2);
         stat4.fillAmount = Mathf.Clamp01(0.7f);
         */
+
+        if (statBars.Count < 1)
+        {
+            return;
+        }
 
         statBars[0].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed-1)/7.0f);
         statBars[1].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.DANCE-1)/7.0f);
@@ -275,16 +310,25 @@ public class MissionSelector : MonoBehaviour
     public void SquadAngle()
     {
         //Debug.Log("CAM Up to " + squadAngle);
-        SquadSelect = true;
-        StartCoroutine(CameraRotate(squadAngle, warTableUI, squadSelectUI));
+        if (!Rotating)
+        {
+            Rotating = true;
+            SquadSelect = true;
+            StartCoroutine(CameraRotate(squadAngle, warTableUI, squadSelectUI));
+        }
+        
     }
 
     //  look at mission menu
     public void TableAngle()
     {
         //Debug.Log("CAM Table to" + tableAngle + " | " + Quaternion.Euler(tableAngle));
-        StartCoroutine(CameraRotate(tableAngle, squadSelectUI, warTableUI));
-        SquadSelect = false;
+        if (!Rotating)
+        {
+            Rotating = true;
+            StartCoroutine(CameraRotate(tableAngle, squadSelectUI, warTableUI));
+            SquadSelect = false;
+        }
     }
 
     private IEnumerator CameraRotate(Vector3 angle, GameObject buttonClicked, GameObject buttonAppearing)
@@ -302,6 +346,7 @@ public class MissionSelector : MonoBehaviour
         //Debug.Log("loop end");
 
         buttonAppearing.SetActive(true);
+        Rotating = false;
         StopAllCoroutines();
     }
 
