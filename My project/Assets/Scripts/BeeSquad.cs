@@ -6,16 +6,18 @@ public class BeeSquad : MonoBehaviour
     [Serializable]
     public struct Stats
     {
-        public int FlightSpeed;
-        public int DANCE;
-        public int Sharpness;
-        public int Hivemind;
+        public float FlightSpeed;
+        public float DANCE;
+        public float Sharpness;
+        public float Hivemind;
     }
+
     public int Level;
     public Stats SquadStats;
 
     public bool Available = true;
-    public int HoursUnilArrival;
+
+    public MissionStatus missionStatus;
 
     public enum MissionResult
     {
@@ -28,10 +30,29 @@ public class BeeSquad : MonoBehaviour
      *  note: not sure how to structure squads completely yet.
      */
 
-    public MissionResult MissionCheck(Mission mission)
+    public MissionResult MissionCheck()
     {
+        
         //  stat calculations and removal from list when killed
-        return MissionResult.Failure;
+        
+        int rng = UnityEngine.Random.Range(0, 2);
+
+        if(rng == 0)
+        {
+            missionStatus.status = MissionStatus.Status.failed;
+            MissionSelector.instance.BeeSquadGraveyard.Add(this);
+            MissionSelector.instance.BeeSquadUnits.Remove(this);
+
+        }
+        else
+        {
+            missionStatus.status = MissionStatus.Status.complete;
+            Available = true;
+        }
+
+        missionStatus = null;
+
+        return rng == 0 ? MissionResult.Failure : MissionResult.Success;
     }
 
     public void LevelUp()

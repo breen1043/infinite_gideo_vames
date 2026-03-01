@@ -42,7 +42,7 @@ public class MissionSelector : MonoBehaviour
     //  send you bees out to DIE
     public void Deploy()
     {
-        if (!selectedMission)
+        if (!selectedMission || BeeSquadUnits.Count <= DeployedBeeSquads.Count)
         {
             return;
         }
@@ -50,15 +50,43 @@ public class MissionSelector : MonoBehaviour
         TimeManager.instance.PassTime();
         MissionStatus newListItem = new MissionStatus();
         newListItem.Mission = selectedMission.mission;
-        newListItem.assignedBeeSquad = BeeSquadUnits[beeSquadIndex];
+        newListItem.HoursUntilComplete = newListItem.Mission.duration;
 
-        BeeSquadUnits[beeSquadIndex].Available = false;
-        BeeSquadUnits[beeSquadIndex].HoursUnilArrival = selectedMission.mission.duration;
-        DeployedBeeSquads.Add(BeeSquadUnits[beeSquadIndex]);
+        if (!selectedMission.mission.Honey)
+        {
+            newListItem.assignedBeeSquad = BeeSquadUnits[beeSquadIndex];
 
-        newListItem.status = MissionStatus.Status.inProgress;
+            BeeSquadUnits[beeSquadIndex].Available = false;
+            //  BeeSquadUnits[beeSquadIndex].HoursUnilArrival = selectedMission.mission.duration;
+            BeeSquadUnits[beeSquadIndex].missionStatus = newListItem;
+            DeployedBeeSquads.Add(BeeSquadUnits[beeSquadIndex]);
+
+            BeeNextIndex();
+        }
+
+        newListItem.status = !selectedMission.mission.Honey ? MissionStatus.Status.inProgress : MissionStatus.Status.complete;
         MissionLog.Add(newListItem);
+        if (!selectedMission.mission.Honey)
+        {
+            selectedMission.gameObject.SetActive(false);
+            switch (TimeManager.instance.DaysLeft)
+            {
+                case 3:
+                    MissionSetter.instance.PopMission(MissionSetter.instance.Day1MissionPool);
+                    break;
+                case 2:
+                    MissionSetter.instance.PopMission(MissionSetter.instance.Day2MissionPool);
+                    break;
+                case 1:
+                    MissionSetter.instance.PopMission(MissionSetter.instance.Day3MissionPool);
+                    break;
+            }
+        }
+
         selectedMission = null;
+
+        
+
         Debug.Log("deployed");
     }
 
@@ -69,17 +97,20 @@ public class MissionSelector : MonoBehaviour
 
         beeSquadIndex--;
 
-        if (!BeeSquadUnits[beeSquadIndex].Available)
-        {
-            beeSquadIndex--;
-        }
-
         if (beeSquadIndex < 0)
         {
             beeSquadIndex = BeeSquadUnits.Count - 1;
         }
 
-        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
+        if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
+        {
+            BeePrevIndex();
+        }
+
+        if (BeeSquadUnits.Count > DeployedBeeSquads.Count)
+        {
+            BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
+        }
     }
 
     public void BeeNextIndex()
@@ -88,17 +119,21 @@ public class MissionSelector : MonoBehaviour
 
         beeSquadIndex++;
 
-        if (!BeeSquadUnits[beeSquadIndex].Available)
-        {
-            beeSquadIndex++;
-        }
-
         if(beeSquadIndex >= BeeSquadUnits.Count)
         {
             beeSquadIndex = 0;
         }
 
-        BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
+        if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
+        {
+            BeeNextIndex();
+        }
+
+        if (BeeSquadUnits.Count > DeployedBeeSquads.Count)
+        {
+            BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
+        }
+
     }
 
     //  look at squad menu
