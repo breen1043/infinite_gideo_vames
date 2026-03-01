@@ -58,7 +58,7 @@ public class MissionSelector : MonoBehaviour
         instance = GetComponent<MissionSelector>();
         lvl_points = 0;
         SetStatBars();
-        StartCoroutine(CameraOrbitForever());
+        //StartCoroutine(CameraOrbitForever());
     }
 
     //  send you bees out to DIE
