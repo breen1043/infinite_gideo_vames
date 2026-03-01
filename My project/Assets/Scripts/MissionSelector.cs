@@ -27,7 +27,8 @@ public class MissionSelector : MonoBehaviour
 
     [Header("Stat Bars")]
 
-    [SerializeField] private List<Image> statBars;
+    [SerializeField] private List<Image> statUpgradeBars;
+    [SerializeField] private List<Image> statDeployBars;
     [SerializeField] private Image pollen_counter;
     [SerializeField] private GameObject UpgradePanel;
     [SerializeField] private List<GameObject> UpgradeButtons;
@@ -35,6 +36,7 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private float orbitSpeed;
     [SerializeField] private float bobAmplitude;
     [SerializeField] private float bobFrequency;
+    
     
 
 
@@ -213,15 +215,19 @@ public class MissionSelector : MonoBehaviour
         stat4.fillAmount = Mathf.Clamp01(0.7f);
         */
 
-        if (statBars.Count < 1)
+        if (statUpgradeBars.Count < 1)
         {
             return;
         }
 
-        statBars[0].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed-1)/7.0f);
-        statBars[1].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.DANCE-1)/7.0f);
-        statBars[2].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness-1)/7.0f);
-        statBars[3].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind-1)/7.0f);
+        statUpgradeBars[0].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed-1)/7.0f);
+        statUpgradeBars[1].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.DANCE-1)/7.0f);
+        statUpgradeBars[2].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness-1)/7.0f);
+        statUpgradeBars[3].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind-1)/7.0f);
+        statDeployBars[0].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed-1)/7.0f);
+        statDeployBars[1].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.DANCE-1)/7.0f);
+        statDeployBars[2].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness-1)/7.0f);
+        statDeployBars[3].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind-1)/7.0f);
         if (BeeSquadUnits[beeSquadIndex].Level < 8) {
             lvlUpButton.GetComponentInChildren<TextMeshProUGUI>().text = "Level Up?\n("+BeeSquadUnits[beeSquadIndex].Level*50+" pollen) ↑"+BeeSquadUnits[beeSquadIndex].Level;
         } else {
