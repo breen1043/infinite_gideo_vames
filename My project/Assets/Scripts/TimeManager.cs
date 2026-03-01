@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
@@ -15,6 +17,9 @@ public class TimeManager : MonoBehaviour
 
     public bool BearFight;
 
+    [SerializeField] private Image blackScreen;
+    [SerializeField] private GameObject dayEndUI;
+
     private void Start()
     {
         instance = GetComponent<TimeManager>();
@@ -29,6 +34,11 @@ public class TimeManager : MonoBehaviour
         {
             CurrentHour = 0;
             DaysLeft--;
+
+            blackScreen.gameObject.SetActive(true);
+            blackScreen.canvasRenderer.SetAlpha(0);
+            blackScreen.CrossFadeAlpha(1f, 2, false);
+            StartCoroutine(DayEndUI());
 
             //  if squad does not come back before nightfall, flat 40% survival rate
             for (int i = 0; i < MissionSelector.instance.DeployedBeeSquads.Count; i++)
@@ -87,5 +97,13 @@ public class TimeManager : MonoBehaviour
                 MissionSelector.instance.DeployedBeeSquads.RemoveAt(i);
             }
         }
+    }
+
+    WaitForSeconds sec = new WaitForSeconds(2f);
+    private IEnumerator DayEndUI()
+    {
+        yield return sec;
+        dayEndUI.SetActive(true);
+        MissionSetter.instance.ClearMissions();
     }
 }

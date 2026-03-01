@@ -65,4 +65,34 @@ public class MissionSetter : MonoBehaviour
             }
         }
     }
+
+    public void ClearMissions()
+    {
+        for (int i=0; i<Nodes.Length; i++)
+        {
+            for (int j=0; j < Nodes[i].childCount; j++)
+            {
+                Transform child = Nodes[i].GetChild(j);
+                child.GetComponent<MissionNode>().mission = null;
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        List<Mission> missionPool = Day1MissionPool;
+
+        switch (TimeManager.instance.DaysLeft)
+        {
+            case 2:
+                missionPool = Day2MissionPool;
+                break;
+            case 1:
+                missionPool = Day3MissionPool;
+                break;
+        }
+
+        for(int i=0; i<3; i++)
+        {
+            PopMission(missionPool);
+        }
+    }
 }
