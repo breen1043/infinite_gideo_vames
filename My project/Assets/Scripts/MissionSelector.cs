@@ -93,6 +93,14 @@ public class MissionSelector : MonoBehaviour
             return;
         }
 
+        if (selectedMission.mission.Honey)
+        {
+            Debug.Log("Getting honey!");
+            HoneyHandler.instance.GainHoney();
+            Debug.Log("Honey Acquired!");
+        }
+
+
         TimeManager.instance.PassTime();
         MissionStatus newListItem = new MissionStatus();
         newListItem.Mission = selectedMission.mission;
