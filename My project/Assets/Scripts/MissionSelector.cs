@@ -82,6 +82,11 @@ public class MissionSelector : MonoBehaviour
             return;
         }
 
+        if (!BeeSquadUnits[beeSquadIndex].Available)
+        {
+            return;
+        }
+
         TimeManager.instance.PassTime();
         MissionStatus newListItem = new MissionStatus();
         newListItem.Mission = selectedMission.mission;
@@ -95,8 +100,6 @@ public class MissionSelector : MonoBehaviour
             //  BeeSquadUnits[beeSquadIndex].HoursUnilArrival = selectedMission.mission.duration;
             BeeSquadUnits[beeSquadIndex].missionStatus = newListItem;
             DeployedBeeSquads.Add(BeeSquadUnits[beeSquadIndex]);
-
-            BeeNextIndex();
         }
 
         newListItem.status = !selectedMission.mission.Honey ? MissionStatus.Status.inProgress : MissionStatus.Status.complete;
@@ -145,21 +148,7 @@ public class MissionSelector : MonoBehaviour
             beeSquadIndex = BeeSquadUnits.Count - 1;
         }
 
-        if (beeSquadIndex < 0)
-        {
-            beeSquadIndex = BeeSquadUnits.Count - 1;
-        }
-
-        if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
-        {
-            for (int i=0; i <= BeeSquadUnits.Count; i++)
-            {
-                BeePrevIndex();
-            }
-            
-        }
-
-        if (BeeSquadUnits.Count > DeployedBeeSquads.Count)
+        if (BeeSquadUnits.Count > DeployedBeeSquads.Count && BeeSquadUnits[beeSquadIndex].Available)
         {
             BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
         }
@@ -168,6 +157,11 @@ public class MissionSelector : MonoBehaviour
 
     public void BeeNextIndex()
     {
+        if (BeeSquadUnits.Count == 0)
+        {
+            return;
+        }
+
         if (beeSquadIndex < BeeSquadUnits.Count && beeSquadIndex >= 0)
         {
             BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
@@ -180,23 +174,11 @@ public class MissionSelector : MonoBehaviour
             beeSquadIndex = 0;
         }
 
-        if(beeSquadIndex >= BeeSquadUnits.Count)
-        {
-            beeSquadIndex = 0;
-        }
-
-        if (BeeSquadUnits.Count > DeployedBeeSquads.Count && !BeeSquadUnits[beeSquadIndex].Available)
-        {
-            for (int i = 0; i <= BeeSquadUnits.Count; i++)
-            {
-                BeeNextIndex();
-            }
-        }
-
-        if (BeeSquadUnits.Count > DeployedBeeSquads.Count)
+        if (BeeSquadUnits.Count > DeployedBeeSquads.Count && BeeSquadUnits[beeSquadIndex].Available)
         {
             BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
         }
+
         SetStatBars();
     }
 
