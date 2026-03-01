@@ -217,16 +217,16 @@ public class MissionSelector : MonoBehaviour
         int temp = 0;
         switch (i) {
             case 1:
-                temp = BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed;
+                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed;
                 break;
             case 2:
-                temp = BeeSquadUnits[beeSquadIndex].SquadStats.DANCE;
+                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.DANCE;
                 break;
             case 3:
-                temp = BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness;
+                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness;
                 break;
             case 4:
-                temp = BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind;
+                temp = (int)BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind;
                 break;
         }
         if (temp < 8) {
