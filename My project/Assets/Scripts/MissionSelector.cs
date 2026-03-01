@@ -19,11 +19,13 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private GameObject warTableUI;
     [SerializeField] private GameObject squadSelectUI;
     [SerializeField] private GameObject lvlUpButton;
+    [SerializeField] private GameObject newBeeCanvas;
 
     [Header("Mission Lists")]
     public List<MissionStatus> MissionLog;
     //  for the selected mission
     public MissionNode selectedMission;
+    [SerializeField] private TMP_InputField beeNamer;
 
     [Header("Stat Bars")]
 
@@ -31,6 +33,7 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private List<Image> statDeployBars;
     [SerializeField] private Image pollen_counter;
     [SerializeField] private GameObject UpgradePanel;
+    [SerializeField] private GameObject DeployPanel;
     [SerializeField] private List<GameObject> UpgradeButtons;
     [SerializeField] private GameObject DisplayCamera;
     [SerializeField] private float orbitSpeed;
@@ -60,7 +63,10 @@ public class MissionSelector : MonoBehaviour
         instance = GetComponent<MissionSelector>();
         lvl_points = 0;
         SetStatBars();
+        //beeNamer.onValueChanged.AddListener(NameUpdate);
         //StartCoroutine(CameraOrbitForever());
+        beeNamer.characterLimit = 12;
+    
     }
 
     //  send you bees out to DIE
@@ -242,6 +248,13 @@ public class MissionSelector : MonoBehaviour
         } else {
             UpgradePanel.SetActive(true);
         }
+        if (SquadSelect) {
+            DeployPanel.SetActive(true);
+        } else {
+            DeployPanel.SetActive(false);
+        }
+        squadSelectUI.GetComponentInChildren<TextMeshProUGUI>().text = BeeSquadUnits[beeSquadIndex].squadname;
+
         for (int i=0; i<4; i++){
             if ((int)getBeeStat(i+1) < 8) {
                 UpgradeButtons[i].GetComponent<Image>().color = new Color(1.0f, 0.788f, 0.0f);
@@ -312,6 +325,21 @@ public class MissionSelector : MonoBehaviour
         }
     }
 
+    public void CreateNewSquad() {
+        GameObject obj = new GameObject("Bee Squad");
+        BeeSquad newBeeSquad = obj.AddComponent<BeeSquad>();
+
+        newBeeSquad.SquadStats.FlightSpeed = 0;
+        newBeeSquad.SquadStats.DANCE = 0;
+        newBeeSquad.SquadStats.Sharpness = 0;
+        newBeeSquad.SquadStats.Hivemind = 0;
+        newBeeSquad.Level=0;
+        newBeeSquad.squadname = beeNamer.text;
+        BeeSquadUnits.Add(newBeeSquad);
+
+        newBeeCanvas.SetActive(false);
+    }
+
     //  look at squad menu
     public void SquadAngle()
     {
@@ -322,7 +350,6 @@ public class MissionSelector : MonoBehaviour
             SquadSelect = true;
             StartCoroutine(CameraRotate(squadAngle, warTableUI, squadSelectUI));
         }
-        
     }
 
     //  look at mission menu
@@ -332,8 +359,9 @@ public class MissionSelector : MonoBehaviour
         if (!Rotating)
         {
             Rotating = true;
-            StartCoroutine(CameraRotate(tableAngle, squadSelectUI, warTableUI));
             SquadSelect = false;
+            StartCoroutine(CameraRotate(tableAngle, squadSelectUI, warTableUI));
+            
         }
     }
 
@@ -341,6 +369,10 @@ public class MissionSelector : MonoBehaviour
     {
         buttonClicked.SetActive(false);
         Quaternion qangle = Quaternion.Euler(angle);
+
+        if (!SquadSelect) {
+            SetStatBars();
+        }
 
         while (Quaternion.Angle(cam.transform.rotation, qangle) > 0.001 )
         {
@@ -350,6 +382,9 @@ public class MissionSelector : MonoBehaviour
             yield return null;
         }
         //Debug.Log("loop end");
+        if (SquadSelect) {
+            SetStatBars();
+        }
 
         buttonAppearing.SetActive(true);
         Rotating = false;
@@ -373,4 +408,5 @@ public class MissionSelector : MonoBehaviour
             yield return null;
         } 
     }
+
 }

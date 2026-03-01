@@ -13,6 +13,7 @@ public class BeeSquad : MonoBehaviour
         public float Hivemind;
     }
 
+    public string squadname;
     public int Level;
     public Stats SquadStats;
     public int points;
