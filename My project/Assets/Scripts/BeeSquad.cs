@@ -13,6 +13,7 @@ public class BeeSquad : MonoBehaviour
     }
     public int Level;
     public Stats SquadStats;
+    public int points;
 
     public bool Available = true;
     public int HoursUnilArrival;
