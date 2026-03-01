@@ -58,10 +58,12 @@
     <Compile Include="Assets\Scripts\BeeCaptainStarter.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\PopUpSpawner.cs" />
+    <Compile Include="Assets\Scripts\HoneyHandler.cs" />
     <Compile Include="Assets\Scripts\MissionDescription.cs" />
     <Compile Include="Assets\Scripts\MissionSetter.cs" />
     <Compile Include="Assets\Scripts\Mission.cs" />
     <Compile Include="Assets\Scripts\PollenHandler.cs" />
+    <Compile Include="Assets\Scripts\RecruitBees.cs" />
     <Compile Include="Assets\Scripts\TimeManager.cs" />
     <Compile Include="Assets\Scripts\BeeSquad.cs" />
     <Compile Include="Assets\Scripts\MissionStatus.cs" />
