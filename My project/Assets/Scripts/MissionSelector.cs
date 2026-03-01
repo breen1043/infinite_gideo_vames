@@ -31,6 +31,12 @@ public class MissionSelector : MonoBehaviour
     [SerializeField] private Image pollen_counter;
     [SerializeField] private GameObject UpgradePanel;
     [SerializeField] private List<GameObject> UpgradeButtons;
+    [SerializeField] private GameObject DisplayCamera;
+    [SerializeField] private float orbitSpeed;
+    [SerializeField] private float bobAmplitude;
+    [SerializeField] private float bobFrequency;
+    
+
 
     [Space(5)]
     public List<BeeSquad> BeeSquadUnits;
@@ -51,6 +57,7 @@ public class MissionSelector : MonoBehaviour
         instance = GetComponent<MissionSelector>();
         lvl_points = 0;
         SetStatBars();
+        StartCoroutine(CameraOrbitForever());
     }
 
     //  send you bees out to DIE
@@ -296,5 +303,23 @@ public class MissionSelector : MonoBehaviour
 
         buttonAppearing.SetActive(true);
         StopAllCoroutines();
+    }
+
+    private IEnumerator CameraOrbitForever() { 
+        Vector3 offset = new Vector3(0.0f,2.33f,-5.0f);
+        while (true) { 
+            offset = Quaternion.AngleAxis(orbitSpeed * Time.deltaTime, Vector3.up) * offset;
+            DisplayCamera.transform.position = BeeSquadUnits[beeSquadIndex].gameObject.transform.position + offset;
+            Vector3 direction = (BeeSquadUnits[beeSquadIndex].gameObject.transform.position - DisplayCamera.transform.position).normalized;
+            Quaternion lookRot = Quaternion.LookRotation(direction);
+            DisplayCamera.transform.rotation = Quaternion.Euler( 25f, lookRot.eulerAngles.y, 0f );
+
+            float bob = Mathf.Sin(Time.time * bobFrequency) * bobAmplitude;
+            Vector3 pos = DisplayCamera.transform.position;
+            pos.y += bob;
+            DisplayCamera.transform.position = pos;
+            
+            yield return null;
+        } 
     }
 }
