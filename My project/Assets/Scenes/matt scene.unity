@@ -317,10 +317,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 5
-    DANCE: 3
-    Sharpness: 4
-    Hivemind: 2
+    FlightSpeed: 4
+    DANCE: 2
+    Sharpness: 3
+    Hivemind: 1
+  points: 0
   Available: 1
   missionStatus:
     Mission: {fileID: 0}
@@ -361,6 +362,41 @@ Transform:
   - {fileID: 320778671}
   m_Father: {fileID: 770786740}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &224988067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224988068}
+  m_Layer: 5
+  m_Name: pop ups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &224988068
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224988067}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1513188889}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &282028424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 197240730298585681, guid: 0cac0a7f7ba2f8147a31205bc70611dc, type: 3}
@@ -811,10 +847,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 3
-    DANCE: 4
-    Sharpness: 2
-    Hivemind: 5
+    FlightSpeed: 2
+    DANCE: 3
+    Sharpness: 1
+    Hivemind: 4
+  points: 0
   Available: 1
   missionStatus:
     Mission: {fileID: 0}
@@ -1331,10 +1368,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 3
-    DANCE: 2
-    Sharpness: 5
-    Hivemind: 4
+    FlightSpeed: 2
+    DANCE: 1
+    Sharpness: 4
+    Hivemind: 3
+  points: 0
   Available: 1
   missionStatus:
     Mission: {fileID: 0}
@@ -2039,10 +2077,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeeCaptainStarter
   Level: 2
   SquadStats:
-    FlightSpeed: 4
-    DANCE: 5
-    Sharpness: 3
-    Hivemind: 2
+    FlightSpeed: 3
+    DANCE: 4
+    Sharpness: 2
+    Hivemind: 1
+  points: 0
   Available: 1
   missionStatus:
     Mission: {fileID: 0}
@@ -2713,6 +2752,7 @@ RectTransform:
   m_Children:
   - {fileID: 1043696754}
   - {fileID: 1473440927}
+  - {fileID: 224988068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3675,6 +3715,7 @@ GameObject:
   - component: {fileID: 2129004915}
   - component: {fileID: 2129004916}
   - component: {fileID: 2129004917}
+  - component: {fileID: 2129004918}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -3714,8 +3755,13 @@ MonoBehaviour:
   camRotationSpeed: 150
   warTableUI: {fileID: 1473440926}
   squadSelectUI: {fileID: 1043696753}
+  lvlUpButton: {fileID: 0}
   MissionLog: []
   selectedMission: {fileID: 0}
+  statBars: []
+  pollen_counter: {fileID: 0}
+  UpgradePanel: {fileID: 0}
+  UpgradeButtons: []
   BeeSquadUnits:
   - {fileID: 202148588}
   - {fileID: 1384934001}
@@ -3724,6 +3770,8 @@ MonoBehaviour:
   DeployedBeeSquads: []
   BeeSquadGraveyard: []
   beeSquadIndex: 0
+  pollen: 0
+  lvl_points: 0
   SquadSelect: 0
 --- !u!114 &2129004915
 MonoBehaviour:
@@ -3752,7 +3800,7 @@ MonoBehaviour:
   Day1MissionPool:
   - {fileID: 11400000, guid: aed8d584b2c012648b946003e090d23d, type: 2}
   - {fileID: 11400000, guid: a2144ad8b6e258b41845b7a7d9c63a0a, type: 2}
-  - {fileID: 11400000, guid: aed8d584b2c012648b946003e090d23d, type: 2}
+  - {fileID: 11400000, guid: 0ece454bec23f8240add2712dbfd312c, type: 2}
   - {fileID: 11400000, guid: a2144ad8b6e258b41845b7a7d9c63a0a, type: 2}
   - {fileID: 11400000, guid: d05ceb7d61fdf8e4ca0d3d3b8af50d1f, type: 2}
   - {fileID: 11400000, guid: d05ceb7d61fdf8e4ca0d3d3b8af50d1f, type: 2}
@@ -3780,6 +3828,21 @@ MonoBehaviour:
   FinalHour: 6
   DaysLeft: 0
   TotalDays: 3
+  BearFight: 0
+--- !u!114 &2129004918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129004912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93bd3eac261a3d549b73f254bfe4f2d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopUpSpawner
+  popUp: {fileID: 886494692147019028, guid: 9c329c0c5117f6644ae0d2dec774c1cf, type: 3}
+  popUpContainer: {fileID: 224988068}
 --- !u!1001 &136924540974821118
 PrefabInstance:
   m_ObjectHideFlags: 0

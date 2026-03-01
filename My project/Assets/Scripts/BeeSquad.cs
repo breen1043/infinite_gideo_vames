@@ -163,8 +163,58 @@ public class BeeSquad : MonoBehaviour
             MissionSelector.instance.BeeSquadGraveyard.Add(this);
             MissionSelector.instance.BeeSquadUnits.Remove(this);
             missionStatus = null;
+            PopUpSpawner.instance.SpawnMissionResult(MissionResult.Failure, name);
             return MissionResult.Failure;
         }
+
+        missionStatus.status = MissionStatus.Status.complete;
+        Available = true;
+        missionStatus = null;
+        PopUpSpawner.instance.SpawnMissionResult(MissionResult.Success, name);
+        return MissionResult.Success;
+    }
+
+    public MissionResult BearCheck(Mission mission)
+    {
+        float standardResults = 0;
+        float weightedResults = 0;
+        float successNumber = 0;
+
+        switch (mission.WeightedStat1)
+        {
+            case Mission.WeightedStat.FlightSpeed:
+                weightedResults = (1.5f * (SquadStats.FlightSpeed - missionStatus.Mission.TargetStats.FlightSpeed));
+            standardResults = (SquadStats.DANCE - missionStatus.Mission.TargetStats.DANCE) +
+                    (SquadStats.Sharpness - missionStatus.Mission.TargetStats.Sharpness) + (SquadStats.Hivemind - missionStatus.Mission.TargetStats.Hivemind);
+                break;
+            case Mission.WeightedStat.DANCE:
+                weightedResults = (1.5f * (SquadStats.DANCE - missionStatus.Mission.TargetStats.DANCE));
+            standardResults = (SquadStats.FlightSpeed - missionStatus.Mission.TargetStats.FlightSpeed) +
+                    (SquadStats.Sharpness - missionStatus.Mission.TargetStats.Sharpness) + (SquadStats.Hivemind - missionStatus.Mission.TargetStats.Hivemind);
+                break;
+            case Mission.WeightedStat.Sharpness:
+                weightedResults = (1.5f * (SquadStats.Sharpness - missionStatus.Mission.TargetStats.Sharpness));
+            standardResults = (SquadStats.FlightSpeed - missionStatus.Mission.TargetStats.FlightSpeed) +
+                   (SquadStats.DANCE - missionStatus.Mission.TargetStats.DANCE) + (SquadStats.Hivemind - missionStatus.Mission.TargetStats.Hivemind);
+                break;
+            case Mission.WeightedStat.Hivemind:
+                weightedResults = (1.5f * (SquadStats.Hivemind - missionStatus.Mission.TargetStats.Hivemind));
+            standardResults = (SquadStats.FlightSpeed - missionStatus.Mission.TargetStats.FlightSpeed) +
+                (SquadStats.DANCE - missionStatus.Mission.TargetStats.DANCE) + (SquadStats.Sharpness - missionStatus.Mission.TargetStats.Sharpness);
+                break;
+        }
+
+        successNumber = weightedResults + standardResults;
+
+        if (successNumber < 0)
+        {
+            missionStatus.status = MissionStatus.Status.failed;
+            MissionSelector.instance.BeeSquadGraveyard.Add(this);
+            MissionSelector.instance.BeeSquadUnits.Remove(this);
+            missionStatus = null;
+            return MissionResult.Failure;
+        }
+
 
         missionStatus.status = MissionStatus.Status.complete;
         Available = true;
