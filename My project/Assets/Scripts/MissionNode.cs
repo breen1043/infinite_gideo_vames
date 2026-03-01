@@ -3,6 +3,7 @@ using UnityEngine;
 public class MissionNode : MonoBehaviour
 {
     public Mission mission;
+    [SerializeField] private 
 
     public enum Location
     {

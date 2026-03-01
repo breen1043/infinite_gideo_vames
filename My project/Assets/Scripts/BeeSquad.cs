@@ -174,13 +174,13 @@ public class BeeSquad : MonoBehaviour
         return MissionResult.Success;
     }
 
-    public MissionResult BearCheck(Mission mission)
+    public MissionResult BearCheck()
     {
         float standardResults = 0;
         float weightedResults = 0;
         float successNumber = 0;
 
-        switch (mission.WeightedStat1)
+        switch (missionStatus.Mission.WeightedStat1)
         {
             case Mission.WeightedStat.FlightSpeed:
                 weightedResults = (1.5f * (SquadStats.FlightSpeed - missionStatus.Mission.TargetStats.FlightSpeed));
