@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
-public class MissionStatus : MonoBehaviour
+[Serializable]
+public class MissionStatus
 {
     public Mission Mission;
 
@@ -12,6 +14,8 @@ public class MissionStatus : MonoBehaviour
     }
 
     public Status status;
+
+    public int HoursUntilComplete;
 
     public BeeSquad assignedBeeSquad;
 }
