@@ -26,6 +26,7 @@ public class MissionSelector : MonoBehaviour
     //  for the selected mission
     public MissionNode selectedMission;
     [SerializeField] private TMP_InputField beeNamer;
+    private bool beeRename = false;
 
     [Header("Stat Bars")]
 
@@ -307,19 +308,36 @@ public class MissionSelector : MonoBehaviour
         }
     }
 
-    public void CreateNewSquad() {
-        GameObject obj = new GameObject("Bee Squad");
-        BeeSquad newBeeSquad = obj.AddComponent<BeeSquad>();
+    public void openNamePanel(bool newBee) {
+        if (newBee) {
+            newBeeCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "New Bee!\nGive them a name:";
+            beeRename = false;
+        } else {
+            newBeeCanvas.GetComponentInChildren<TextMeshProUGUI>().text = "Rename your bees:";
+            beeRename = true;
+        }
+        newBeeCanvas.SetActive(true);
+    }
 
-        newBeeSquad.SquadStats.FlightSpeed = 0;
-        newBeeSquad.SquadStats.DANCE = 0;
-        newBeeSquad.SquadStats.Sharpness = 0;
-        newBeeSquad.SquadStats.Hivemind = 0;
-        newBeeSquad.Level=0;
-        newBeeSquad.squadname = beeNamer.text;
-        BeeSquadUnits.Add(newBeeSquad);
+    public void NameSquad() {
 
+        if (!beeRename) {
+            GameObject obj = new GameObject("Bee Squad");
+            BeeSquad newBeeSquad = obj.AddComponent<BeeSquad>();
+            
+
+            newBeeSquad.SquadStats.FlightSpeed = 0;
+            newBeeSquad.SquadStats.DANCE = 0;
+            newBeeSquad.SquadStats.Sharpness = 0;
+            newBeeSquad.SquadStats.Hivemind = 0;
+            newBeeSquad.Level=0;
+            newBeeSquad.squadname = beeNamer.text;
+            BeeSquadUnits.Add(newBeeSquad);
+        } else {
+            BeeSquadUnits[beeSquadIndex].squadname = beeNamer.text;
+        }
         newBeeCanvas.SetActive(false);
+        SetStatBars();
     }
 
     //  look at squad menu
