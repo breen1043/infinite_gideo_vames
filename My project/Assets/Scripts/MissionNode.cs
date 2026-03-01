@@ -33,5 +33,6 @@ public class MissionNode : MonoBehaviour
     public void ClickSelect()
     {
         MissionSelector.instance.selectedMission = this;
+        MissionDescription.instance.SetDescription(mission.Title, mission.Description);
     }
 }

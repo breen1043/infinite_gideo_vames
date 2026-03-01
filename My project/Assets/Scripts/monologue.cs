@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class monologue : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class monologue : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
+    private InputAction mouseClick;
 
     private int index;
 
@@ -16,19 +18,61 @@ public class monologue : MonoBehaviour
     {
         textComponent.text = string.Empty;
         StartDialogue();
+
+
+        mouseClick = InputSystem.actions.FindAction("MouseClick");
+
+        // mouseClickAction = InputSystem.actions.FindAction("MouseClick");
+
+        // mouseClickAction.performed += MouseClickAction_performed;
+
     }
+
+
+    // private void MouseClickAction_performed(InputAction.CallbackContext obj)
+    // {
+    //     if(Input.GetMouseButtonDown(0))
+    //     {
+    //         if (textComponent.text == lines[index])
+    //         {
+    //             NextLine();
+    //         }
+    //         else
+    //         {
+    //             StopAllCoroutines();
+    //             textComponent.text = lines[index];
+    //         }
+    //     }
+    // }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        // if(Input.GetMouseButtonDown(0))
+        // {
+        //     if (textComponent.text == lines[index])
+        //     {
+        //         NextLine();
+        //     }
+        //     else
+        //     {
+        //         StopAllCoroutines();
+        //         textComponent.text = lines[index];
+        //     }
+            
+        // }
+
+        if (mouseClick.WasPressedThisFrame())
         {
             if (textComponent.text == lines[index])
             {
                 NextLine();
             }
-
-            
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+            }
         }
     }
 
@@ -61,4 +105,9 @@ public class monologue : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    // private void OnDestroy()
+    // {
+    //     mouseClickAction.performed -= MouseClickAction_performed;
+    // }
 }

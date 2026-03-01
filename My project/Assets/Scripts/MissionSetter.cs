@@ -8,6 +8,7 @@ public class MissionSetter : MonoBehaviour
     public List<Mission> Day1MissionPool;
     public List<Mission> Day2MissionPool;
     public List<Mission> Day3MissionPool;
+    public List<Mission> BearDayMissionPool;
     public Transform[] Nodes;
 
     private void Start()
@@ -88,10 +89,19 @@ public class MissionSetter : MonoBehaviour
             case 1:
                 missionPool = Day3MissionPool;
                 break;
+            case 0:
+                missionPool = BearDayMissionPool;
+                break;
         }
 
         for(int i=0; i<3; i++)
         {
+            PopMission(missionPool);
+        }
+
+        if (TimeManager.instance.DaysLeft == 0)
+        {
+            PopMission(missionPool);
             PopMission(missionPool);
         }
     }
