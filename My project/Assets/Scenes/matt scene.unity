@@ -1158,6 +1158,7 @@ GameObject:
   - component: {fileID: 536111369}
   - component: {fileID: 536111371}
   - component: {fileID: 536111370}
+  - component: {fileID: 536111372}
   m_Layer: 5
   m_Name: desc
   m_TagString: Untagged
@@ -1224,6 +1225,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536111368}
   m_CullTransparentMesh: 1
+--- !u!114 &536111372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536111368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a676fd20ad869c54bbcfdd4ead328385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionDescription
+  titleText: {fileID: 742827137}
+  descriptionText: {fileID: 1697073810}
 --- !u!1 &572087452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,14 +1262,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572087452}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 536111369}
   - {fileID: 434407053}
-  m_Father: {fileID: 1513188889}
+  m_Father: {fileID: 1473440927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3510,6 +3525,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1234788791}
+  - {fileID: 572087453}
   m_Father: {fileID: 1513188889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3748,7 +3764,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 572087453}
   - {fileID: 1043696754}
   - {fileID: 1473440927}
   - {fileID: 224988068}

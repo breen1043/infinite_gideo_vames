@@ -3,7 +3,6 @@ using UnityEngine;
 public class MissionNode : MonoBehaviour
 {
     public Mission mission;
-    [SerializeField] private 
 
     public enum Location
     {
@@ -34,5 +33,6 @@ public class MissionNode : MonoBehaviour
     public void ClickSelect()
     {
         MissionSelector.instance.selectedMission = this;
+        MissionDescription.instance.SetDescription(mission.Title, mission.Description);
     }
 }
