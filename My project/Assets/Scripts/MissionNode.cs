@@ -31,6 +31,6 @@ public class MissionNode : MonoBehaviour
 
     public void ClickSelect()
     {
-        Debug.Log("clicked "+gameObject.name);
+        MissionSelector.instance.selectedMission = this;
     }
 }

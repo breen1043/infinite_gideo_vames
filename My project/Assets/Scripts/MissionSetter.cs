@@ -3,9 +3,7 @@ using UnityEngine;
 
 public class MissionSetter : MonoBehaviour
 {
-
-    private TimeManager time;
-    private MissionSelector missionSelector;
+    public static MissionSetter instance;
 
     public List<Mission> Day1MissionPool;
     public List<Mission> Day2MissionPool;
@@ -14,7 +12,7 @@ public class MissionSetter : MonoBehaviour
 
     private void Start()
     {
-        time = GetComponent<TimeManager>();
+        instance = GetComponent<MissionSetter>();
         for (int i=0;i<3;i++)
         {
             PopMission(Day1MissionPool);
@@ -23,6 +21,10 @@ public class MissionSetter : MonoBehaviour
 
     public void PopMission(List<Mission> missionPool)
     {
+        if (missionPool.Count < 1)
+        {
+            return;
+        }
         int randomMission = Random.Range(0, missionPool.Count);
         SetMission(missionPool[randomMission]);
         missionPool.RemoveAt(randomMission);

@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
+    public static PlayerInput instance;
+
     private Camera cam;
 
     private InputAction mousePosDetect;
@@ -21,6 +23,8 @@ public class PlayerInput : MonoBehaviour
         mouseClick = InputSystem.actions.FindAction("MouseClick");
 
         mousePosDetect.performed += MouseMove;
+
+        instance = GetComponent<PlayerInput>();
     }
 
     private void OnDestroy()
@@ -41,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         if(hit.transform)
             node = hit.transform.GetComponent<MissionNode>();
 
-        if (node)
+        if (node && !MissionSelector.instance.SquadSelect)
         {
             node.HoverInfo();
             if (mouseClick.WasPressedThisFrame())

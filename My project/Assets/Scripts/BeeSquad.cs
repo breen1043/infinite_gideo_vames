@@ -15,6 +15,7 @@ public class BeeSquad : MonoBehaviour
     public Stats SquadStats;
 
     public bool Available;
+    public int HoursUnilArrival;
 
     public enum MissionResult
     {

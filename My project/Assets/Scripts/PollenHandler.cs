@@ -2,16 +2,23 @@ using UnityEngine;
 
 public class PollenHandler : MonoBehaviour
 {
-    MissionSelector missionSelector;
+    public static PollenHandler instance;
     [SerializeField] private int pollen;
 
     //  for choosing level up
     private BeeSquad.Stats levelUpStat;
     [SerializeField] private Mesh[] beePromotionModels;
 
+    public enum PollenAmount
+    {
+        Low,
+        Medium,
+        High
+    }
+
     private void Start()
     {
-        missionSelector = GetComponent<MissionSelector>();
+        instance = GetComponent<PollenHandler>();
     }
 
     /*
