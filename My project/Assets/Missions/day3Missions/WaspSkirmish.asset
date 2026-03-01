@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: WaspSkirmish
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 4
+    DANCE: 2
+    Sharpness: 7
+    Hivemind: 6
+  WeightedStat1: 3
+  WeightedStat2: 4
+  duration: 2
+  Title: Wasp Skirmish
+  Description: "Those wasps in the forests have been coming too close to our hive
+    recently\u2026 Our scouts think they mean to launch an attack on us soon, Madam
+    President. We must intercept them first- with strength and teamwork!"
+  Location: 0
+  Pollen: 3
+  Honey: 0

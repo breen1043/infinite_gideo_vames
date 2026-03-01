@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: SnailAlliance
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 2
+    DANCE: 5
+    Sharpness: 2
+    Hivemind: 5
+  WeightedStat1: 2
+  WeightedStat2: 4
+  duration: 1
+  Title: Snail Alliance
+  Description: Some ground-dwelling folk have come by for a visit. They may move
+    slowly, but that serves to heighten their knowledge! Or so they say. Regardless,
+    we should welcome them with one of our lovely synchronized dance routines.
+  Location: 1
+  Pollen: 2
+  Honey: 0

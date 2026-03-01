@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: SmalllGiant
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 3
+    DANCE: 1
+    Sharpness: 4
+    Hivemind: 1
+  WeightedStat1: 1
+  WeightedStat2: 3
+  duration: 1
+  Title: Small Giant
+  Description: One of the little giants has wandered into our territory, President.
+    We need to defend our ground. Bees that hit hard and fast would be more than
+    enough to fend off this smaller giant!
+  Location: 0
+  Pollen: 1
+  Honey: 0

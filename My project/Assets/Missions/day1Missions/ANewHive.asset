@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: ANewHive
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 4
+    DANCE: 1
+    Sharpness: 1
+    Hivemind: 4
+  WeightedStat1: 1
+  WeightedStat2: 4
+  duration: 2
+  Title: A New Hive?
+  Description: A new colony of wasps has made their hive in the trees nearby. We
+    need fast and coordinated bees to go scout things out.
+  Location: 0
+  Pollen: 2
+  Honey: 0

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: MushroomFarm
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 4
+    DANCE: 2
+    Sharpness: 1
+    Hivemind: 4
+  WeightedStat1: 1
+  WeightedStat2: 4
+  duration: 2
+  Title: Mushroom Farm
+  Description: The colony of ants near the pond have started their own mushroom farming
+    practices. Something about the mushrooms seems off, though.. It would be wise
+    to check it out. A stealthy squad that works well together and moves quickly
+    would be perfect.
+  Location: 2
+  Pollen: 2
+  Honey: 0

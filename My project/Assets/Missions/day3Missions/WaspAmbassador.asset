@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: WaspAmbassador
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 5
+    DANCE: 7
+    Sharpness: 2
+    Hivemind: 3
+  WeightedStat1: 1
+  WeightedStat2: 2
+  duration: 3
+  Title: Wasp Ambassador
+  Description: "President Comb, the wasp colony seems like they want to\u2026 ally
+    with us? This chance is one in a buzz-illion. We must showcase our ways of life,
+    and how similar we truly are. A traditional dance, perhaps? But the wasps are
+    notoriously swift\u2026"
+  Location: 0
+  Pollen: 3
+  Honey: 0
