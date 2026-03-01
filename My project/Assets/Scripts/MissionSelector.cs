@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MissionSelector : MonoBehaviour
 {
@@ -16,11 +18,25 @@ public class MissionSelector : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private GameObject warTableUI;
     [SerializeField] private GameObject squadSelectUI;
+    [SerializeField] private GameObject lvlUpButton;
 
     [Header("Mission Lists")]
     public List<MissionStatus> MissionLog;
     //  for the selected mission
     public MissionNode selectedMission;
+
+    [Header("Stat Bars")]
+
+    [SerializeField] private List<Image> statBars;
+    [SerializeField] private Image pollen_counter;
+    [SerializeField] private GameObject UpgradePanel;
+    [SerializeField] private List<GameObject> UpgradeButtons;
+    [SerializeField] private GameObject DisplayCamera;
+    [SerializeField] private float orbitSpeed;
+    [SerializeField] private float bobAmplitude;
+    [SerializeField] private float bobFrequency;
+    
+
 
     [Space(5)]
     public List<BeeSquad> BeeSquadUnits;
@@ -29,6 +45,8 @@ public class MissionSelector : MonoBehaviour
     public List<BeeSquad> BeeSquadGraveyard;
     //  for the selected member
     public int beeSquadIndex;
+    public int pollen;
+    public int lvl_points;
 
     //  view mode: false = looking at map, true = selecting units
     public bool SquadSelect;
@@ -37,6 +55,9 @@ public class MissionSelector : MonoBehaviour
     {
         cam = Camera.main;
         instance = GetComponent<MissionSelector>();
+        lvl_points = 0;
+        SetStatBars();
+        StartCoroutine(CameraOrbitForever());
     }
 
     //  send you bees out to DIE
@@ -96,6 +117,11 @@ public class MissionSelector : MonoBehaviour
         BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
 
         beeSquadIndex--;
+        
+        if (beeSquadIndex < 0)
+        {
+            beeSquadIndex = BeeSquadUnits.Count - 1;
+        }
 
         if (beeSquadIndex < 0)
         {
@@ -111,6 +137,7 @@ public class MissionSelector : MonoBehaviour
         {
             BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
         }
+        SetStatBars();
     }
 
     public void BeeNextIndex()
@@ -118,6 +145,11 @@ public class MissionSelector : MonoBehaviour
         BeeSquadUnits[beeSquadIndex].gameObject.SetActive(false);
 
         beeSquadIndex++;
+        
+        if(beeSquadIndex >= BeeSquadUnits.Count)
+        {
+            beeSquadIndex = 0;
+        }
 
         if(beeSquadIndex >= BeeSquadUnits.Count)
         {
@@ -133,7 +165,110 @@ public class MissionSelector : MonoBehaviour
         {
             BeeSquadUnits[beeSquadIndex].gameObject.SetActive(true);
         }
+        SetStatBars();
+    }
 
+    /*public int[] getStats(int i) {
+        return new int[] {
+        BeeSquadUnits[i].SquadStats.FlightSpeed,
+        BeeSquadUnits[i].SquadStats.DANCE,
+        BeeSquadUnits[i].SquadStats.Sharpness,
+        BeeSquadUnits[i].SquadStats.Hivemind};
+    }*/
+
+    public void SetStatBars() {
+        /*stat1.fillAmount = Mathf.Clamp01(1);
+        stat2.fillAmount = Mathf.Clamp01(0);
+        stat3.fillAmount = Mathf.Clamp01(2);
+        stat4.fillAmount = Mathf.Clamp01(0.7f);
+        */
+
+        statBars[0].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed-1)/7.0f);
+        statBars[1].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.DANCE-1)/7.0f);
+        statBars[2].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness-1)/7.0f);
+        statBars[3].fillAmount = Mathf.Clamp01((BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind-1)/7.0f);
+        if (BeeSquadUnits[beeSquadIndex].Level < 8) {
+            lvlUpButton.GetComponentInChildren<TextMeshProUGUI>().text = "Level Up?\n("+BeeSquadUnits[beeSquadIndex].Level*50+" pollen) ↑"+BeeSquadUnits[beeSquadIndex].Level;
+        } else {
+            lvlUpButton.GetComponentInChildren<TextMeshProUGUI>().text = "Level Maxed";
+        }
+        pollen_counter.GetComponentInChildren<TextMeshProUGUI>().text = "Pollen: "+pollen;
+        //Debug.Log(UpgradePanel.GetComponentInChildren<TextMeshProUGUI>());
+        UpgradePanel.GetComponentInChildren<TextMeshProUGUI>().text = "ALLOCATE POINTS (+"+BeeSquadUnits[beeSquadIndex].points+")";
+
+        if (BeeSquadUnits[beeSquadIndex].points <= 0) {
+            UpgradePanel.SetActive(false);
+        } else {
+            UpgradePanel.SetActive(true);
+        }
+        for (int i=0; i<4; i++){
+            if ((int)getBeeStat(i+1) < 8) {
+                UpgradeButtons[i].GetComponent<Image>().color = new Color(1.0f, 0.788f, 0.0f);
+            } else {
+                UpgradeButtons[i].GetComponent<Image>().color = new Color(0.4f, 0.2f, 0.5f);
+            }
+        }
+    }
+
+    public void lvlUp() {
+        if (pollen >= BeeSquadUnits[beeSquadIndex].Level*50 && BeeSquadUnits[beeSquadIndex].Level < 8) {
+            pollen -= BeeSquadUnits[beeSquadIndex].Level*50;
+            //Debug.Log("Leveling Up Squad:" + beeSquadIndex +", -"+BeeSquadUnits[beeSquadIndex].Level*50+" pollen ("+pollen+"), +"+BeeSquadUnits[beeSquadIndex].Level+" points");
+            
+            
+            BeeSquadUnits[beeSquadIndex].points+=BeeSquadUnits[beeSquadIndex].Level;
+            BeeSquadUnits[beeSquadIndex].Level += 1;
+            
+            
+
+            UpgradePanel.SetActive(true);
+        } else {
+            Debug.Log("Lvlup registered and failed");
+        }
+        SetStatBars();
+    }
+
+    public void statLvlUp(int i) {
+        int temp = 0;
+        temp = (int)getBeeStat(i);
+        if (temp < 8) {
+            temp += 1;
+            BeeSquadUnits[beeSquadIndex].points -= 1;
+        } else {
+            Debug.Log("Overleveled, lvlup failed");
+        }
+        switch (i) {
+            case 1:
+                BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed = temp;
+                break;
+            case 2:
+                BeeSquadUnits[beeSquadIndex].SquadStats.DANCE = temp;
+                break;
+            case 3:
+                BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness = temp;
+                break;
+            case 4:
+                BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind = temp;
+                break;
+        }
+        
+        
+        SetStatBars();
+    }
+
+    public int getBeeStat(int i) {
+        switch (i) {
+            case 1:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.FlightSpeed;
+            case 2:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.DANCE;
+            case 3:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.Sharpness;
+            case 4:
+                return (int)BeeSquadUnits[beeSquadIndex].SquadStats.Hivemind;
+            default:
+                return -1;
+        }
     }
 
     //  look at squad menu
@@ -168,5 +303,23 @@ public class MissionSelector : MonoBehaviour
 
         buttonAppearing.SetActive(true);
         StopAllCoroutines();
+    }
+
+    private IEnumerator CameraOrbitForever() { 
+        Vector3 offset = new Vector3(0.0f,2.33f,-5.0f);
+        while (true) { 
+            offset = Quaternion.AngleAxis(orbitSpeed * Time.deltaTime, Vector3.up) * offset;
+            DisplayCamera.transform.position = BeeSquadUnits[beeSquadIndex].gameObject.transform.position + offset;
+            Vector3 direction = (BeeSquadUnits[beeSquadIndex].gameObject.transform.position - DisplayCamera.transform.position).normalized;
+            Quaternion lookRot = Quaternion.LookRotation(direction);
+            DisplayCamera.transform.rotation = Quaternion.Euler( 25f, lookRot.eulerAngles.y, 0f );
+
+            float bob = Mathf.Sin(Time.time * bobFrequency) * bobAmplitude;
+            Vector3 pos = DisplayCamera.transform.position;
+            pos.y += bob;
+            DisplayCamera.transform.position = pos;
+            
+            yield return null;
+        } 
     }
 }
