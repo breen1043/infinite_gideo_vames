@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/opening monologue.unity
+    guid: 861b917035d837c4b9ba4f5f527257f8
+  - enabled: 1
+    path: Assets/Scenes/MissionScene.unity
+    guid: b13ec52469f6dca4297ab35e007bae30
+  - enabled: 1
+    path: Assets/Scenes/matt scene.unity
+    guid: fa13deddd1133bb419c56653a70ba49b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
