@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: SlayTheDragonfly
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 5
+    DANCE: 2
+    Sharpness: 5
+    Hivemind: 3
+  WeightedStat1: 3
+  WeightedStat2: 1
+  duration: 2
+  Title: Slay the Dragon(fly)
+  Description: The scouts report a creature of legend residing in the waters of the
+    pond. Something with large wings and a tail..? Oh. We have those things too.
+    But the creature is a dragonfly. It's been harrying our scouts! Send warriors
+    to defeat it, quickly!
+  Location: 2
+  Pollen: 2
+  Honey: 0

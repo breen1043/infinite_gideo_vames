@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: FloatLikeA
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 2
+    DANCE: 4
+    Sharpness: 1
+    Hivemind: 1
+  WeightedStat1: 1
+  WeightedStat2: 2
+  duration: 1
+  Title: Float Like A...
+  Description: A new butterfly emerged to live in our meadow last spring. It's come
+    to our attention that we have yet to introduce ourselves. We should say hello!
+    Perhaps have a welcome committee race the butterfly, or engage in a jovial dance?
+  Location: 1
+  Pollen: 1
+  Honey: 0

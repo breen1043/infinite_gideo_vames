@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: StickyFlowers
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 1
+    DANCE: 2
+    Sharpness: 4
+    Hivemind: 3
+  WeightedStat1: 3
+  WeightedStat2: 4
+  duration: 1
+  Title: Sticky Flowers??
+  Description: Those bright, fuzzy puffball flowers that the giants toss around are
+    no flowers at all! They've ensnared some members of our hive! We need clever
+    bees with sharp stingers to cut them free!
+  Location: 3
+  Pollen: 2
+  Honey: 0

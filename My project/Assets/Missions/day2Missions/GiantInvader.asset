@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: GiantInvader
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 4
+    DANCE: 2
+    Sharpness: 4
+    Hivemind: 1
+  WeightedStat1: 1
+  WeightedStat2: 3
+  duration: 2
+  Title: Giant Invader!
+  Description: Madam President! This is not a drill! A fully-grown giant has been
+    sighted not too far from the hive! We need to drive it off before it comes any
+    closer. Please, send your fiercest warriors and swiftest fliers!
+  Location: 0
+  Pollen: 2
+  Honey: 0

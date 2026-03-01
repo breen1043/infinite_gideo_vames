@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17696fff31500204f8255c330117fa9b, type: 3}
+  m_Name: Dance-Off
+  m_EditorClassIdentifier: Assembly-CSharp::Mission
+  TargetStats:
+    FlightSpeed: 1
+    DANCE: 4
+    Sharpness: 1
+    Hivemind: 3
+  WeightedStat1: 0
+  WeightedStat2: 0
+  duration: 1
+  Title: Dance-Off!!
+  Description: A local moth has challenged our hive to a friendly dance-off. This
+    is a good opportunity to make a new friend! Send a crew to face off against them.
+    Make sure they can move in sync, too. Wouldn't want to embarrass ourselves!
+  Location: 3
+  Pollen: 1
+  Honey: 0
